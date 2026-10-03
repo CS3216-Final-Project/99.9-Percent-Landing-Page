@@ -1,0 +1,16 @@
+{
+  "name": "99-99-percent-landing-page",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "The 99.99% system-design tycoon landing page",
+  "scripts": {
+    "dev": "node server.mjs",
+    "build": "node build.mjs",
+    "preview": "node server.mjs --dir dist",
+    "start": "node server.mjs --dir dist"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}
