@@ -32,28 +32,24 @@ window.matchMedia("(max-width: 600px)").addEventListener("change", closeNavigati
 // same overload; choices are alternatives, not cumulative purchases.
 const scenarios = {
   initial: {
-    state: "DATABASE OVERLOAD", app: "Application", appLoad: "90% load",
-    dbLoad: "150% load", demand: "900 / 600 ops/s", meter: 100,
-    recovered: false, cache: false, label: "THE SITUATION",
-    text: "Your database is receiving more work than it can handle. Where would you invest?",
+    state: "Database overload", app: "App server", appLoad: "90% load",
+    dbLoad: "150% load", recovered: false, label: "Where would you invest?",
+    text: "Choose an upgrade to see what happens.",
   },
   servers: {
-    state: "BOTTLENECK REMAINS", app: "2 applications", appLoad: "45% load each",
-    dbLoad: "150% load", demand: "900 / 600 ops/s", meter: 100,
-    recovered: false, cache: false, label: "MORE SERVERS. SAME BOTTLENECK.",
-    text: "Application load falls, but the database still receives 900 operations/s. Extra app servers don't increase database capacity. You've added cost without fixing this bottleneck.",
+    state: "Still overloaded", app: "2 app servers", appLoad: "45% load each",
+    dbLoad: "150% load", recovered: false, label: "The bottleneck stays.",
+    text: "More app servers share app traffic, but the database stays overloaded. You pay more without fixing the bottleneck.",
   },
   cache: {
-    state: "DATABASE HAS HEADROOM", app: "Application", appLoad: "90% load",
-    dbLoad: "78% load", demand: "468 / 600 ops/s", meter: 52,
-    recovered: true, cache: true, label: "FEWER READS. MORE BREATHING ROOM.",
-    text: "Once warm, a 60% hit rate on the 80% read workload reduces database demand to 468 operations/s. The trade-off: cache cost and warm-up time. Write-heavy traffic gets less benefit.",
+    state: "Room to breathe", app: "App server", appLoad: "90% load",
+    dbLoad: "78% load", recovered: true, label: "Fewer reads hit the database.",
+    text: "A warm read cache brings database load down to 78%. It takes time to warm up and helps reads, not writes.",
   },
   database: {
-    state: "DATABASE HAS HEADROOM", app: "Application", appLoad: "90% load",
-    dbLoad: "90% load", demand: "900 / 1,000 ops/s", meter: 60,
-    recovered: true, cache: false, label: "MORE CAPACITY. A BIGGER BILL.",
-    text: "After the upgrade activates, 1,000 operations/s of capacity can handle the 900 operations/s demand. The trade-off: activation delay and a higher recurring bill. Demand itself hasn't changed.",
+    state: "Room to breathe", app: "App server", appLoad: "90% load",
+    dbLoad: "90% load", recovered: true, label: "More capacity. A bigger bill.",
+    text: "A bigger database brings its load down to 90%. You gain capacity, but pay more every week.",
   },
 };
 
@@ -63,11 +59,7 @@ const elements = {
   app: document.querySelector("#app-label"),
   appLoad: document.querySelector("#app-load"),
   dbLoad: document.querySelector("#db-load"),
-  demand: document.querySelector("#db-demand"),
-  meter: document.querySelector("#meter-fill"),
   db: document.querySelector("#db-node"),
-  architecture: document.querySelector("#architecture"),
-  cache: document.querySelector("#cache-node"),
   label: document.querySelector("#result-label"),
   text: document.querySelector("#result-text"),
 };
@@ -81,14 +73,7 @@ function showScenario(action) {
   elements.app.textContent = scenario.app;
   elements.appLoad.textContent = scenario.appLoad;
   elements.dbLoad.textContent = scenario.dbLoad;
-  elements.demand.textContent = scenario.demand;
-  elements.meter.style.width = `${scenario.meter}%`;
-  elements.meter.style.background = scenario.recovered
-    ? "var(--green)"
-    : "linear-gradient(90deg, #83ad61 66.6%, #f5a36c 66.6%)";
   elements.db.classList.toggle("recovered", scenario.recovered);
-  elements.architecture.classList.toggle("has-cache", scenario.cache);
-  elements.cache.setAttribute("aria-hidden", String(!scenario.cache));
   elements.label.textContent = scenario.label;
   elements.text.textContent = scenario.text;
   decisionButtons.forEach((button) => {
