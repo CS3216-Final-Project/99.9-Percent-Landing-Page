@@ -4,7 +4,7 @@ A responsive marketing page for **99.99%**, the CS3216 Group 5 system-design tyc
 
 The page addresses NUS Computing undergraduates directly, with a side-project hook, three short gameplay benefits, and an approachable bottleneck example. Body copy is 18–20px; every visible text label is at least 16px at desktop and phone sizes. Secondary dashboard metrics, decorative labels, repeated copy, and nonessential FAQ entries have been removed.
 
-The primary CTA opens the [playable prototype](https://99-99-percent-prototype.vercel.app/). The page invites early players without collecting personal information or claiming that a signup was recorded.
+The primary CTA opens the [playable prototype](https://99-99-percent-web.vercel.app/). The page invites early players without collecting personal information or claiming that a signup was recorded.
 
 ## Run locally
 
