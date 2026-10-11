@@ -6,7 +6,7 @@ The page addresses NUS Computing undergraduates directly, with a side-project ho
 
 The page uses the game's visual language from `frontend/src/index.css` and `docs/UI_DESIGN.md` in [the game repository](https://github.com/CS3216-Final-Project/99.9-Percent): the indigo night background, cream paper cards with ink outlines, yellow buttons that press down, coloured icon tiles, Pixelify Sans for headings and Rubik for reading. Digits in headings fall back to Rubik, as in the game. Type sizes stay larger than the game's so the page reads comfortably.
 
-Every game link opens [the game](https://99-99-percent-web.vercel.app/). Sign-up happens in the game: players create an account with Google from **Account and cloud saves** on the title screen. The page links to the game root rather than the sign-in endpoint, so an account-service outage leaves visitors on the game's own guest fallback. The landing page itself collects no personal information.
+Every game link opens [the game](https://99-99-percent-web.vercel.app/). Sign-up happens in the game. The two **Create an account** buttons open the game at `/?signin=1`: once the game has checked the visitor's session, it opens its Account dialog (Google or email) for a visitor who is not signed in and leaves a signed-in player on the home screen. The page links to the game root rather than the sign-in endpoint, so an account-service outage shows the game's offline notice and guest fallback instead of a failed sign-in. The landing page itself collects no personal information.
 
 ## Run locally
 
@@ -48,7 +48,7 @@ The example starts at 900 requests/s, 1,000 requests/s of application capacity, 
 
 ## Editing
 
-- `index.html`: positioning, FAQ, CTA destination, and page structure. Every link to the game uses `data-game-link` for easy discovery.
+- `index.html`: positioning, FAQ, CTA destination, and page structure. Every link to the game uses `data-game-link` for easy discovery; the account links add `?signin=1`.
 - `styles.css`: the game's colour tokens and components, self-hosted fonts, responsive layout, and reduced-motion styles.
 - `script.js`: navigation, the illustrative scenario and the live numbers.
 - `assets/gameplay-*.webp`: production screenshots; `assets/social-preview.jpg`: 1200×630 link preview; `assets/favicon.svg`: the game's own favicon.
