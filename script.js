@@ -55,7 +55,8 @@ const scenarios = {
 
 const elements = {
   state: document.querySelector("#scenario-state"),
-  dot: document.querySelector("#scenario-dot"),
+  status: document.querySelector("#scenario-status"),
+  result: document.querySelector("#decision-result"),
   app: document.querySelector("#app-label"),
   appLoad: document.querySelector("#app-load"),
   dbLoad: document.querySelector("#db-load"),
@@ -68,8 +69,10 @@ const decisionButtons = document.querySelectorAll("[data-action]");
 function showScenario(action) {
   const scenario = scenarios[action];
   elements.state.textContent = scenario.state;
-  elements.dot.classList.toggle("dot-orange", !scenario.recovered);
-  elements.state.style.color = scenario.recovered ? "var(--green)" : "var(--orange)";
+  elements.status.classList.toggle("is-ok", scenario.recovered);
+  // The starting prompt stays neutral; each choice is shown as a fix or a miss.
+  elements.result.classList.toggle("is-ok", action !== "initial" && scenario.recovered);
+  elements.result.classList.toggle("is-bad", action !== "initial" && !scenario.recovered);
   elements.app.textContent = scenario.app;
   elements.appLoad.textContent = scenario.appLoad;
   elements.dbLoad.textContent = scenario.dbLoad;

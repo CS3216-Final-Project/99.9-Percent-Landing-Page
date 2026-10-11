@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#0b0e11" />
+    <meta name="theme-color" content="#231e44" />
     <meta name="description" content="A system-design tycoon for NUS Computing students. Run a startup from a 3D office, find the bottleneck when traffic spikes, and keep it online. Free in your browser, with Google sign-in and cloud saves." />
     <meta property="og:title" content="99.99% — Your side project just went viral." />
     <meta property="og:description" content="Grow a startup. Keep it online. A system-design tycoon for NUS Computing students, free in your browser." />
@@ -16,6 +16,8 @@
     <meta name="twitter:card" content="summary_large_image" />
     <title>99.99% — A system-design tycoon for NUS Computing</title>
     <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml" />
+    <link rel="preload" href="./assets/fonts/pixelify-sans-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="./assets/fonts/rubik-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="stylesheet" href="./styles.css" />
     <script src="./script.js" defer></script>
   </head>
@@ -23,38 +25,37 @@
     <a class="skip-link" href="#main">Skip to content</a>
     <header class="site-header">
       <div class="container header-inner">
-        <a class="brand" href="#" aria-label="99.99% home">
-          <span class="brand-symbol" aria-hidden="true"><span></span><span></span><span></span></span>
-          <span>99.99<span class="highlight">%</span></span>
-        </a>
+        <a class="brand" href="#" aria-label="99.99% home">99.99%</a>
         <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open navigation"><span></span><span></span></button>
         <nav id="site-nav" class="site-nav" aria-label="Main navigation">
           <a href="#modes">The game</a>
           <a href="#chapters">Chapters</a>
           <a href="#account">Accounts</a>
-          <a class="button button-outline nav-cta" data-game-link href="https://99-99-percent-web.vercel.app/">Play now <span aria-hidden="true">↗</span></a>
+          <a class="button button-primary nav-cta" data-game-link href="https://99-99-percent-web.vercel.app/"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 11h-2V9h2zm0 4h-2v-2h2zm-2 2h-2v-2h2zm0-8h-2V7h2zm-2-2H9V5h2zM9 21H7V3h2zm6-8h2v-2h-2zm-6 4h2v2H9z"/></svg>Play now</a>
         </nav>
       </div>
     </header>
 
     <main id="main">
-      <section class="hero container" aria-labelledby="hero-title">
-        <div class="hero-copy">
-          <p class="eyebrow"><span class="status-dot"></span> For NUS Computing students</p>
-          <h1 id="hero-title">Your side project.<br />Just went <span class="highlight">viral.</span></h1>
-          <p class="hero-description">A system-design tycoon. Run a startup from a 3D office, find the bottleneck when traffic spikes, and keep the company online.</p>
-          <div class="hero-actions">
-            <a class="button button-primary" data-game-link href="https://99-99-percent-web.vercel.app/"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m7 4 9 6-9 6z" /></svg> Play free in your browser <span aria-hidden="true">↗</span></a>
-            <a class="button button-outline" href="#account">Create an account</a>
+      <div class="hero-band">
+        <section class="hero container" aria-labelledby="hero-title">
+          <div class="hero-copy">
+            <p class="kicker"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 7h4v2H6zm0 8h4v2H6zM2 5h2v14H2zm18 0h2v14h-2zM4 19h16v2H4zM4 3h16v2H4zm0 8h16v2H4z"/></svg>For NUS Computing students</p>
+            <h1 id="hero-title">Your side project.<br />Just went <span class="highlight">viral.</span></h1>
+            <p class="hero-description">A system-design tycoon. Run a startup from a 3D office, find the bottleneck when traffic spikes, and keep the company online.</p>
+            <div class="hero-actions">
+              <a class="button button-primary button-big" data-game-link href="https://99-99-percent-web.vercel.app/"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 11h-2V9h2zm0 4h-2v-2h2zm-2 2h-2v-2h2zm0-8h-2V7h2zm-2-2H9V5h2zM9 21H7V3h2zm6-8h2v-2h-2zm-6 4h2v2H9z"/></svg>Play free in your browser</a>
+              <a class="button button-big" href="#account"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 2h6v2H9zm0 8h6v2H9zm6-6h2v6h-2zM7 4h2v6H7zM4 18h2v4H4zm14 0h2v4h-2zM8 14h8v2H8zm-2 2h2v2H6zm10 0h2v2h-2z"/></svg>Create an account</a>
+            </div>
+            <p class="hero-note">No download · Play as a guest or sign in with Google</p>
           </div>
-          <p class="hero-note">No download · Play as a guest or sign in with Google</p>
-        </div>
-        <figure class="game-preview">
-          <div class="preview-topbar"><span><span class="status-dot"></span> Campaign · Chapter 1</span><span>In-game screenshot</span></div>
-          <img class="screenshot" src="./assets/gameplay-incident.webp" width="1600" height="1000" alt="99.99% during a Service slowdown incident: the database glows red in the 3D office while the incident panel shows 1,100 ms latency, a backlog of 600 and three responses to choose from." fetchpriority="high" />
-          <figcaption><span class="incident-icon" aria-hidden="true">!</span><span><strong>Service slowdown.</strong> Latency is at 1,100 ms and 600 requests are waiting.</span></figcaption>
-        </figure>
-      </section>
+          <figure class="game-preview">
+            <div class="preview-topbar"><span><span class="live-dot" aria-hidden="true"></span>Campaign · Chapter 1</span><span class="tag">In-game screenshot</span></div>
+            <img class="screenshot" src="./assets/gameplay-incident.webp" width="1600" height="1000" alt="99.99% during a Service slowdown incident: the database glows red in the 3D office while the incident panel shows 1,100 ms latency, a backlog of 600 and three responses to choose from." fetchpriority="high" />
+            <figcaption><span class="concept concept-critical" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24"><path d="M6 11h2v5H6zm2-2h2v2H8zm2-2h4v2h-4zm4 2h2v2h-2zm2 2h2v5h-2zM6 16h12v2H6zm-2 4h16v2H4zm0-2h2v2H4zm14 0h2v2h-2zm-7-6h2v4h-2zm9-1h3v2h-3zM1 11h3v2H1zm5-6h2v2H6zm10 0h2v2h-2zm2-2h2v2h-2zM4 3h2v2H4zm7-1h2v3h-2z"/></svg></span><span><strong>Service slowdown.</strong> Latency is at 1,100 ms and 600 requests are waiting.</span></figcaption>
+          </figure>
+        </section>
+      </div>
 
       <section id="modes" class="section container" aria-labelledby="modes-title">
         <div class="section-intro">
@@ -65,30 +66,30 @@
           <article class="mode-card">
             <img src="./assets/gameplay-campaign.webp" width="1600" height="1000" loading="lazy" alt="Campaign mode: the 3D office with labelled Network, Servers, Database and Monitoring rooms, the five-chapter progress bar along the top and the System overview panel on the right." />
             <div class="mode-copy">
-              <p class="mode-tag">Continuous play · Guided challenges</p>
-              <h3>Campaign</h3>
+              <h3><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 7h4v2H6zm0 8h4v2H6zM2 5h2v14H2zm18 0h2v14h-2zM4 19h16v2H4zM4 3h16v2H4zm0 8h16v2H4z"/></svg>Campaign</h3>
+              <p class="mode-pace">Continuous play · Guided challenges</p>
               <p>Grow one company through five chapters. Inspect any part of the system, choose a response and watch it take effect. Pause whenever you need to think.</p>
             </div>
           </article>
           <article class="mode-card">
             <img src="./assets/gameplay-classic-tech-tree.webp" width="1600" height="1000" loading="lazy" alt="Classic mode: the tech tree with nine upgrades in Capacity, Data and Reliability rows, from Scale Up to Automatic Failover, beside the Operations panel." />
             <div class="mode-copy">
-              <p class="mode-tag">Week by week · 26-week challenge</p>
-              <h3>Classic</h3>
+              <h3><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h14v2H5zm0 16h14v2H5zM3 10h2v10H3zm0-4h2v2H3zm16 0h2v2h-2zm0 4h2v10h-2zM3 8h18v2H3zm12-6h2v2h-2zM7 2h2v2H7zm0 10h10v2H7zm0 4h10v2H7z"/></svg>Classic</h3>
+              <p class="mode-pace">Week by week · 26-week challenge</p>
               <p>Grow to 50,000 users in 26 weeks. Manage cash and engineers, research nine upgrades across capacity, data and reliability, and get through the outages without going broke.</p>
             </div>
           </article>
         </div>
       </section>
 
-      <section id="chapters" class="chapters-section" aria-labelledby="chapters-title">
+      <section id="chapters" class="band" aria-labelledby="chapters-title">
         <div class="container section">
           <div class="section-intro">
             <h2 id="chapters-title">One company.<br /><span class="highlight">Five chapters.</span></h2>
             <p>Your servers, investments and progress carry forward from one chapter to the next.</p>
           </div>
           <ol class="chapter-list">
-            <li><span class="chapter-number" aria-hidden="true">1</span><div><h3>Opening</h3><p>Traffic grows and the service slows down. Read the latency, errors and backlog, inspect each component and find your first bottleneck.</p></div></li>
+            <li class="is-start"><span class="chapter-number" aria-hidden="true">1</span><div><div><h3>Opening</h3><span class="chapter-status">Start here</span></div><p>Traffic grows and the service slows down. Read the latency, errors and backlog, inspect each component and find your first bottleneck.</p></div></li>
             <li><span class="chapter-number" aria-hidden="true">2</span><div><h3>Scaling &amp; Routing</h3><p>Add servers, put a load balancer in front of them and make sure new capacity actually receives traffic.</p></div></li>
             <li><span class="chapter-number" aria-hidden="true">3</span><div><h3>Data Strategy</h3><p>Add a read cache, tune it and see how read-heavy and write-heavy workloads change the load on your database.</p></div></li>
             <li><span class="chapter-number" aria-hidden="true">4</span><div><h3>Traffic Spikes &amp; Autoscaling</h3><p>Demand surges in sudden spikes. Turn on autoscaling and watch it add servers as traffic rises and retire them when it falls.</p></div></li>
@@ -100,20 +101,20 @@
       <section id="account" class="section container" aria-labelledby="account-title">
         <div class="account-panel">
           <div class="account-copy">
-            <h2 id="account-title">Keep your company.</h2>
+            <h2 id="account-title">Keep your <span class="highlight">company.</span></h2>
             <p>Create a free account with Google and your company is saved to the cloud, not just to one browser. Pick up where you left off.</p>
-            <a class="button button-primary" data-game-link href="https://99-99-percent-web.vercel.app/">Create your free account <span aria-hidden="true">↗</span></a>
-            <p class="account-steps">In the game, open <strong>Account and cloud saves</strong> on the title screen and choose <strong>Sign in with Google</strong>.</p>
+            <a class="button button-primary button-big" data-game-link href="https://99-99-percent-web.vercel.app/"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 2h6v2H9zm0 8h6v2H9zm6-6h2v6h-2zM7 4h2v6H7zM4 18h2v4H4zm14 0h2v4h-2zM8 14h8v2H8zm-2 2h2v2H6zm10 0h2v2h-2z"/></svg>Create your free account</a>
+            <p class="callout"><span class="concept concept-go" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24"><path d="M9 4h6v2H9zM7 6h2v2H7zm8 0h2v2h-2zm4-2h2v2h-2zm2-2h2v2h-2zM0 10h3v2H0zm21 0h3v2h-3zM3 4h2v2H3zM1 2h2v2H1zm6 12h2v2H7zm8 0h2v2h-2zM5 8h2v6H5zm12 0h2v6h-2zm-8 8h6v2H9zm0 4h6v2H9zm0-2h2v2H9zm4 0h2v2h-2zM11 0h2v3h-2z"/></svg></span><span>In the game, open <strong>Account and cloud saves</strong> on the title screen and choose <strong>Sign in with Google</strong>.</span></p>
           </div>
           <ul class="account-list">
-            <li><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="13" r="6"/><path d="M8 34v-4a12 12 0 0 1 24 0v4"/></svg><div><h3>Google sign-in</h3><p>Use the Google account you already have. No new password to remember.</p></div></li>
-            <li><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M12 30h17a8 8 0 0 0 1-16 11 11 0 0 0-21 3 7 7 0 0 0 3 13z"/><path d="m15 22 4 4 7-8"/></svg><div><h3>Cloud saves</h3><p>Your company is stored in your account, so clearing your browser doesn't wipe your progress.</p></div></li>
-            <li><svg viewBox="0 0 40 40" aria-hidden="true"><rect x="6" y="9" width="28" height="20" rx="3"/><path d="M14 34h12M20 29v5"/></svg><div><h3>Or play as a guest</h3><p>Skip the account and progress saves in your browser. You can export and import save files from the menu.</p></div></li>
+            <li><span class="concept concept-users" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24"><path d="M17 21H7v-2h10v2ZM7 19H5v-2h2v2Zm12 0h-2v-2h2v2ZM5 17H3V7h2v10Zm16 0h-2v-4h-6v-2h8v6ZM7 7H5V5h2v2Zm12 0h-2V5h2v2Zm-2-2H7V3h10v2Z"/></svg></span><div><h3>Google sign-in</h3><p>Use the Google account you already have. No new password to remember.</p></div></li>
+            <li><span class="concept concept-revenue" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24"><path d="M22 10h-4v2h4v-2Zm2 2h-2v6h2v-6Zm-2 6H2v2h20v-2ZM2 12H0v6h2v-6Zm2-2H2v2h2v-2Zm4-2H4v2h4V8Zm8-4h-6v2h6V4Zm-6 2H8v2h2V6Zm0 4H8v2h2v-2Zm8-4h-2v2h2V6Z"/><path d="M20 8h-2v4h2V8Zm-2 4h-2v2h2v-2Z"/></svg></span><div><h3>Cloud saves</h3><p>Your company is stored in your account, so clearing your browser doesn't wipe your progress.</p></div></li>
+            <li><span class="concept" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24"><path d="M3 18h18v-2h2v4H1v-4h2v2Zm2-4h14V6h2v10H3V6h2v8Zm14-8H5V4h14v2Z"/></svg></span><div><h3>Or play as a guest</h3><p>Skip the account and progress saves in your browser. You can export and import save files from the menu.</p></div></li>
           </ul>
         </div>
       </section>
 
-      <section id="inside" class="inside-section" aria-labelledby="inside-title">
+      <section id="inside" class="band" aria-labelledby="inside-title">
         <div class="container section">
           <div class="section-intro">
             <h2 id="inside-title">The database is overloaded.<br /><span class="highlight">What's your move?</span></h2>
@@ -121,33 +122,33 @@
           </div>
           <div class="challenge">
             <div class="challenge-monitor">
-              <div class="monitor-topline"><span class="status-dot dot-orange" id="scenario-dot"></span><span id="scenario-state">Database overload</span></div>
+              <div class="monitor-topline" id="scenario-status"><span class="concept concept-critical" aria-hidden="true"><svg class="icon icon-alert" viewBox="0 0 24 24"><path d="M6 11h2v5H6zm2-2h2v2H8zm2-2h4v2h-4zm4 2h2v2h-2zm2 2h2v5h-2zM6 16h12v2H6zm-2 4h16v2H4zm0-2h2v2H4zm14 0h2v2h-2zm-7-6h2v4h-2zm9-1h3v2h-3zM1 11h3v2H1zm5-6h2v2H6zm10 0h2v2h-2zm2-2h2v2h-2zM4 3h2v2H4zm7-1h2v3h-2z"/></svg><svg class="icon icon-ok" viewBox="0 0 24 24"><path d="M13 22h-2v-2h2v2Zm-2-2H9v-2h2v2Zm4 0h-2v-2h2v2Zm-6-2H7v-2h2v2Zm8 0h-2v-2h2v2ZM7 16H5v-2h2v2Zm12 0h-2v-2h2v2ZM5 14H3v-2h2v2Zm16 0h-2v-2h2v2ZM3 12H1V6h2v6Zm20 0h-2V6h2v6ZM13 8h-2V6h2v2ZM5 6H3V4h2v2Zm6 0H9V4h2v2Zm4 0h-2V4h2v2Zm6 0h-2V4h2v2ZM9 4H5V2h4v2Zm10 0h-4V2h4v2Z"/></svg></span><span id="scenario-state">Database overload</span></div>
               <div class="architecture" id="architecture">
-                <div class="architecture-node user-node">
-                  <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="10" r="5"/><path d="M5 29v-5a11 11 0 0 1 22 0v5"/></svg>
+                <div class="architecture-node">
+                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 2h6v2H5zm10 0h4v2h-4zM5 10h6v2H5zm10 0h4v2h-4zm4-6h2v6h-2zm-8 0h2v6h-2zM3 4h2v6H3zM0 18h2v4H0zm14 0h2v4h-2zm8 0h2v4h-2zM4 14h8v2H4zm12 0h4v2h-4zM2 16h2v2H2zm10 0h2v2h-2zm8 0h2v2h-2z"/></svg>
                   <strong>Users</strong><span>900 req/s</span>
                 </div>
-                <span class="flow-arrow" aria-hidden="true">→</span>
-                <div class="architecture-node app-node">
-                  <svg viewBox="0 0 32 32" aria-hidden="true"><rect x="6" y="3" width="20" height="26" rx="3"/><path d="M10 10h12M10 16h12M10 22h6"/></svg>
+                <span class="flow-arrow" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24"><path d="M4 11v2h16v-2zm12 2v2h2v-2zm-2 2v2h2v-2zm-2 2v2h2v-2zm4-6V9h2v2z"/><path d="M14 15V7h2v8zm-2 2V5h2v12z"/></svg></span>
+                <div class="architecture-node">
+                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 7h4v2H6zm0 8h4v2H6zM2 5h2v14H2zm18 0h2v14h-2zM4 19h16v2H4zM4 3h16v2H4zm0 8h16v2H4z"/></svg>
                   <strong id="app-label">App server</strong><span id="app-load">90% load</span>
                 </div>
-                <span class="flow-arrow" aria-hidden="true">→</span>
+                <span class="flow-arrow" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24"><path d="M4 11v2h16v-2zm12 2v2h2v-2zm-2 2v2h2v-2zm-2 2v2h2v-2zm4-6V9h2v2z"/><path d="M14 15V7h2v8zm-2 2V5h2v12z"/></svg></span>
                 <div class="architecture-node db-node" id="db-node">
-                  <svg viewBox="0 0 32 32" aria-hidden="true"><ellipse cx="16" cy="7" rx="11" ry="4"/><path d="M5 7v18c0 5 22 5 22 0V7M5 16c0 5 22 5 22 0"/></svg>
+                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 6h2v4H2zm0 4h2v4H2zm0 4h2v4H2zm18-8h2v4h-2zm0 4h2v4h-2zm0 4h2v4h-2zM4 4h4v2H4zm0 8h4v-2H4zm0 4h4v-2H4zm0 4h4v-2H4zM16 4h4v2h-4zm0 8h4v-2h-4zm0 4h4v-2h-4zm0 4h4v-2h-4zM8 2h8v2H8zm0 12h8v-2H8zm0 4h8v-2H8zm0 4h8v-2H8z"/></svg>
                   <strong>Database</strong><span id="db-load">150% load</span>
                 </div>
               </div>
               <p class="scenario-context">Illustrative example, not the game's numbers: read-heavy traffic, after upgrades take effect.</p>
             </div>
             <div class="challenge-controls">
-              <div class="challenge-prompt"><h3>Choose your next move</h3><button class="reset-button" id="reset-scenario" type="button">Reset <span aria-hidden="true">↺</span></button></div>
+              <div class="challenge-prompt"><h3>Choose a response</h3><button class="reset-button" id="reset-scenario" type="button"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M13 20H9V18H13V20ZM19 16H21V18H19V20H17V18H15V16H17V8H19V16ZM9 18H7V16H9V18ZM7 6H9V8H7V16H5V8H3V6H5V4H7V6ZM15 16H13V14H15V16ZM23 16H21V14H23V16ZM3 10H1V8H3V10ZM11 10H9V8H11V10ZM17 8H15V6H17V8ZM15 6H11V4H15V6Z"/></svg>Reset</button></div>
               <div class="decision-buttons" role="group" aria-label="Choose a response to the database overload">
-                <button type="button" class="decision" data-action="servers" aria-pressed="false"><span>Add app servers</span><span aria-hidden="true">↗</span></button>
-                <button type="button" class="decision" data-action="cache" aria-pressed="false"><span>Add a read cache</span><span aria-hidden="true">↗</span></button>
-                <button type="button" class="decision" data-action="database" aria-pressed="false"><span>Upgrade the database</span><span aria-hidden="true">↗</span></button>
+                <button type="button" class="decision" data-action="servers" aria-pressed="false">Add app servers</button>
+                <button type="button" class="decision" data-action="cache" aria-pressed="false">Add a read cache</button>
+                <button type="button" class="decision" data-action="database" aria-pressed="false">Upgrade the database</button>
               </div>
-              <div class="decision-result" role="status" aria-live="polite" aria-atomic="true"><strong id="result-label">Where would you invest?</strong><p id="result-text">Choose an upgrade to see what happens.</p></div>
+              <div class="decision-result" id="decision-result" role="status" aria-live="polite" aria-atomic="true"><strong id="result-label">Where would you invest?</strong><p id="result-text">Choose an upgrade to see what happens.</p></div>
               <noscript><p>Open the game to try real decisions.</p></noscript>
             </div>
           </div>
@@ -157,19 +158,19 @@
       <section id="questions" class="section container faq-section" aria-labelledby="faq-title">
         <h2 id="faq-title">Before you play</h2>
         <div class="faq-list">
-          <details><summary>Do I need production experience?<span aria-hidden="true">+</span></summary><p>No. Basic web-development knowledge is enough. You learn how scaling, caching, databases and failover work together by seeing the consequences of your choices.</p></details>
-          <details><summary>How do I play?<span aria-hidden="true">+</span></summary><p>Open the game in your browser and choose Campaign or Classic. A laptop or desktop works best. There's nothing to install.</p></details>
-          <details><summary>Do I need an account?<span aria-hidden="true">+</span></summary><p>No. You can play as a guest, and your progress stays in that browser. Sign in with Google from the title screen to save your company to your account.</p></details>
-          <details><summary>Is this the finished game?<span aria-hidden="true">+</span></summary><p>Not yet. CS3216 Group 5 is building it and adding to it every week. Use the Give feedback button in the game to tell us what to improve.</p></details>
+          <details><summary>Do I need production experience?<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M13 11h7v2h-7v7h-2v-7H4v-2h7V4h2v7Z"/></svg></summary><p>No. Basic web-development knowledge is enough. You learn how scaling, caching, databases and failover work together by seeing the consequences of your choices.</p></details>
+          <details><summary>How do I play?<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M13 11h7v2h-7v7h-2v-7H4v-2h7V4h2v7Z"/></svg></summary><p>Open the game in your browser and choose Campaign or Classic. A laptop or desktop works best. There's nothing to install.</p></details>
+          <details><summary>Do I need an account?<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M13 11h7v2h-7v7h-2v-7H4v-2h7V4h2v7Z"/></svg></summary><p>No. You can play as a guest, and your progress stays in that browser. Sign in with Google from the title screen to save your company to your account.</p></details>
+          <details><summary>Is this the finished game?<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M13 11h7v2h-7v7h-2v-7H4v-2h7V4h2v7Z"/></svg></summary><p>Not yet. CS3216 Group 5 is building it and adding to it every week. Use the Give feedback button in the game to tell us what to improve.</p></details>
         </div>
       </section>
 
       <section class="final-cta container" aria-labelledby="cta-title">
-        <h2 id="cta-title">Think your system<br />can handle it?</h2>
+        <h2 id="cta-title">Think your system<br /><span class="highlight">can handle it?</span></h2>
         <p>Play a run. See what breaks. Figure out your next move.</p>
-        <a class="button button-primary" data-game-link href="https://99-99-percent-web.vercel.app/">Play free in your browser <span aria-hidden="true">↗</span></a>
+        <a class="button button-primary button-big" data-game-link href="https://99-99-percent-web.vercel.app/"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 11h-2V9h2zm0 4h-2v-2h2zm-2 2h-2v-2h2zm0-8h-2V7h2zm-2-2H9V5h2zM9 21H7V3h2zm6-8h2v-2h-2zm-6 4h2v2H9z"/></svg>Play free in your browser</a>
       </section>
     </main>
-    <footer class="site-footer container"><a class="brand" href="#" aria-label="99.99% home"><span>99.99<span class="highlight">%</span></span></a><span>Made by CS3216 Group 5.</span></footer>
+    <footer class="site-footer container"><a class="brand" href="#" aria-label="99.99% home">99.99%</a><span>Made by CS3216 Group 5.</span></footer>
   </body>
 </html>
