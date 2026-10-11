@@ -10,7 +10,7 @@ const option = (name, fallback) => {
 };
 const root = resolve(fileURLToPath(new URL(".", import.meta.url)), option("--dir", "."));
 const port = Number(option("--port", process.env.PORT || "4173"));
-const types = { ".html": "text/html; charset=utf-8", ".css": "text/css; charset=utf-8", ".js": "text/javascript; charset=utf-8", ".svg": "image/svg+xml" };
+const types = { ".html": "text/html; charset=utf-8", ".css": "text/css; charset=utf-8", ".js": "text/javascript; charset=utf-8", ".svg": "image/svg+xml", ".webp": "image/webp", ".jpg": "image/jpeg" };
 
 if (!Number.isInteger(port) || port < 1 || port > 65535) throw new Error("Invalid port");
 const server = createServer(async (request, response) => {

@@ -4,11 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#0b0e11" />
-    <meta name="description" content="A system-design tycoon for NUS Computing students. Grow a startup, survive traffic spikes, and put your architecture to the test. Play the free prototype." />
+    <meta name="description" content="A system-design tycoon for NUS Computing students. Run a startup from a 3D office, find the bottleneck when traffic spikes, and keep it online. Free in your browser, with Google sign-in and cloud saves." />
     <meta property="og:title" content="99.99% — Your side project just went viral." />
-    <meta property="og:description" content="Build a startup. Keep it online. A system-design tycoon for NUS Computing students." />
+    <meta property="og:description" content="Grow a startup. Keep it online. A system-design tycoon for NUS Computing students, free in your browser." />
     <meta property="og:type" content="website" />
-    <meta name="twitter:card" content="summary" />
+    <meta property="og:url" content="https://99-percent-landing-page.vercel.app/" />
+    <meta property="og:image" content="https://99-percent-landing-page.vercel.app/assets/social-preview.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="The 99.99% startup office, with its network, servers, database and monitoring rooms." />
+    <meta name="twitter:card" content="summary_large_image" />
     <title>99.99% — A system-design tycoon for NUS Computing</title>
     <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="./styles.css" />
@@ -24,9 +29,10 @@
         </a>
         <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open navigation"><span></span><span></span></button>
         <nav id="site-nav" class="site-nav" aria-label="Main navigation">
-          <a href="#the-game">The game</a>
-          <a href="#inside">Try a decision</a>
-          <a class="button button-outline nav-cta" data-prototype-link href="https://99-99-percent-web.vercel.app/">Play prototype <span aria-hidden="true">↗</span></a>
+          <a href="#modes">The game</a>
+          <a href="#chapters">Chapters</a>
+          <a href="#account">Accounts</a>
+          <a class="button button-outline nav-cta" data-game-link href="https://99-99-percent-web.vercel.app/">Play now <span aria-hidden="true">↗</span></a>
         </nav>
       </div>
     </header>
@@ -36,38 +42,74 @@
         <div class="hero-copy">
           <p class="eyebrow"><span class="status-dot"></span> For NUS Computing students</p>
           <h1 id="hero-title">Your side project.<br />Just went <span class="highlight">viral.</span></h1>
-          <p class="hero-description">A system-design tycoon where you grow a startup, survive traffic spikes, and put your architecture to the test.</p>
-          <a class="button button-primary" data-prototype-link href="https://99-99-percent-web.vercel.app/"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m7 4 9 6-9 6z" /></svg> Play the prototype <span aria-hidden="true">↗</span></a>
-          <p class="hero-note">Free to try · No download</p>
+          <p class="hero-description">A system-design tycoon. Run a startup from a 3D office, find the bottleneck when traffic spikes, and keep the company online.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" data-game-link href="https://99-99-percent-web.vercel.app/"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m7 4 9 6-9 6z" /></svg> Play free in your browser <span aria-hidden="true">↗</span></a>
+            <a class="button button-outline" href="#account">Create an account</a>
+          </div>
+          <p class="hero-note">No download · Play as a guest or sign in with Google</p>
         </div>
         <figure class="game-preview">
-          <div class="preview-topbar"><span><span class="status-dot"></span> Your startup HQ</span><span>Concept mockup</span></div>
-          <img class="server-room" src="./assets/server-room.svg" width="900" height="650" alt="Isometric server room with application servers, an orange database, and engineering desks." fetchpriority="high" />
-          <figcaption><span class="incident-icon" aria-hidden="true">!</span><span><strong>Traffic spike.</strong> Your database is overloaded.</span></figcaption>
+          <div class="preview-topbar"><span><span class="status-dot"></span> Campaign · Chapter 1</span><span>In-game screenshot</span></div>
+          <img class="screenshot" src="./assets/gameplay-incident.webp" width="1600" height="1000" alt="99.99% during a Service slowdown incident: the database glows red in the 3D office while the incident panel shows 1,100 ms latency, a backlog of 600 and three responses to choose from." fetchpriority="high" />
+          <figcaption><span class="incident-icon" aria-hidden="true">!</span><span><strong>Service slowdown.</strong> Latency is at 1,100 ms and 600 requests are waiting.</span></figcaption>
         </figure>
       </section>
 
-      <section id="the-game" class="section container" aria-labelledby="game-title">
+      <section id="modes" class="section container" aria-labelledby="modes-title">
         <div class="section-intro">
-          <h2 id="game-title">You've seen the diagrams.<br />Now make the calls.</h2>
-          <p>You're the tech lead. Keep your startup running as traffic grows and your budget gets tighter.</p>
+          <h2 id="modes-title">You've seen the diagrams.<br />Now make the calls.</h2>
+          <p>You're the tech lead. Choose how you want to play. Each mode keeps its own progress.</p>
         </div>
-        <div class="feature-grid">
-          <article class="feature-card">
-            <svg class="feature-icon" viewBox="0 0 40 40" aria-hidden="true"><rect x="4" y="7" width="13" height="25" rx="3"/><rect x="23" y="7" width="13" height="25" rx="3"/><path d="M8 14h5M8 20h5M27 14h5M27 20h5M17 25h6"/></svg>
-            <h3>Build your startup</h3>
-            <p>Start with an app and a database. Pick upgrades without burning through your budget.</p>
+        <div class="mode-grid">
+          <article class="mode-card">
+            <img src="./assets/gameplay-campaign.webp" width="1600" height="1000" loading="lazy" alt="Campaign mode: the 3D office with labelled Network, Servers, Database and Monitoring rooms, the five-chapter progress bar along the top and the System overview panel on the right." />
+            <div class="mode-copy">
+              <p class="mode-tag">Continuous play · Guided challenges</p>
+              <h3>Campaign</h3>
+              <p>Grow one company through five chapters. Inspect any part of the system, choose a response and watch it take effect. Pause whenever you need to think.</p>
+            </div>
           </article>
-          <article class="feature-card">
-            <svg class="feature-icon" viewBox="0 0 40 40" aria-hidden="true"><path d="M5 32V23m10 9V18m10 14V11m10 21V5M3 15 13 10l10 2L35 2"/></svg>
-            <h3>Survive the spike</h3>
-            <p>Your app takes off. Find the bottleneck before slow requests become an outage.</p>
+          <article class="mode-card">
+            <img src="./assets/gameplay-classic-tech-tree.webp" width="1600" height="1000" loading="lazy" alt="Classic mode: the tech tree with nine upgrades in Capacity, Data and Reliability rows, from Scale Up to Automatic Failover, beside the Operations panel." />
+            <div class="mode-copy">
+              <p class="mode-tag">Week by week · 26-week challenge</p>
+              <h3>Classic</h3>
+              <p>Grow to 50,000 users in 26 weeks. Manage cash and engineers, research nine upgrades across capacity, data and reliability, and get through the outages without going broke.</p>
+            </div>
           </article>
-          <article class="feature-card">
-            <svg class="feature-icon" viewBox="0 0 40 40" aria-hidden="true"><path d="M34 17a14 14 0 1 0-3 14M34 5v12H22M12 21l5 5 11-12"/></svg>
-            <h3>See what worked</h3>
-            <p>Watch your decisions change the system. Take what you learn into the next run.</p>
-          </article>
+        </div>
+      </section>
+
+      <section id="chapters" class="chapters-section" aria-labelledby="chapters-title">
+        <div class="container section">
+          <div class="section-intro">
+            <h2 id="chapters-title">One company.<br /><span class="highlight">Five chapters.</span></h2>
+            <p>Your servers, investments and progress carry forward from one chapter to the next.</p>
+          </div>
+          <ol class="chapter-list">
+            <li><span class="chapter-number" aria-hidden="true">1</span><div><h3>Opening</h3><p>Traffic grows and the service slows down. Read the latency, errors and backlog, inspect each component and find your first bottleneck.</p></div></li>
+            <li><span class="chapter-number" aria-hidden="true">2</span><div><h3>Scaling &amp; Routing</h3><p>Add servers, put a load balancer in front of them and make sure new capacity actually receives traffic.</p></div></li>
+            <li><span class="chapter-number" aria-hidden="true">3</span><div><h3>Data Strategy</h3><p>Add a read cache, tune it and see how read-heavy and write-heavy workloads change the load on your database.</p></div></li>
+            <li><span class="chapter-number" aria-hidden="true">4</span><div><h3>Traffic Spikes &amp; Autoscaling</h3><p>Demand surges in sudden spikes. Turn on autoscaling and watch it add servers as traffic rises and retire them when it falls.</p></div></li>
+            <li><span class="chapter-number" aria-hidden="true">5</span><div><h3>Stay Online</h3><p>Applications fail. Prepare health checks, spare instances and automatic failover so the service keeps running.</p></div></li>
+          </ol>
+        </div>
+      </section>
+
+      <section id="account" class="section container" aria-labelledby="account-title">
+        <div class="account-panel">
+          <div class="account-copy">
+            <h2 id="account-title">Keep your company.</h2>
+            <p>Create a free account with Google and your company is saved to the cloud, not just to one browser. Pick up where you left off.</p>
+            <a class="button button-primary" data-game-link href="https://99-99-percent-web.vercel.app/">Create your free account <span aria-hidden="true">↗</span></a>
+            <p class="account-steps">In the game, open <strong>Account and cloud saves</strong> on the title screen and choose <strong>Sign in with Google</strong>.</p>
+          </div>
+          <ul class="account-list">
+            <li><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="13" r="6"/><path d="M8 34v-4a12 12 0 0 1 24 0v4"/></svg><div><h3>Google sign-in</h3><p>Use the Google account you already have. No new password to remember.</p></div></li>
+            <li><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M12 30h17a8 8 0 0 0 1-16 11 11 0 0 0-21 3 7 7 0 0 0 3 13z"/><path d="m15 22 4 4 7-8"/></svg><div><h3>Cloud saves</h3><p>Your company is stored in your account, so clearing your browser doesn't wipe your progress.</p></div></li>
+            <li><svg viewBox="0 0 40 40" aria-hidden="true"><rect x="6" y="9" width="28" height="20" rx="3"/><path d="M14 34h12M20 29v5"/></svg><div><h3>Or play as a guest</h3><p>Skip the account and progress saves in your browser. You can export and import save files from the menu.</p></div></li>
+          </ul>
         </div>
       </section>
 
@@ -96,7 +138,7 @@
                   <strong>Database</strong><span id="db-load">150% load</span>
                 </div>
               </div>
-              <p class="scenario-context">Illustrative example: read-heavy traffic, after upgrades take effect.</p>
+              <p class="scenario-context">Illustrative example, not the game's numbers: read-heavy traffic, after upgrades take effect.</p>
             </div>
             <div class="challenge-controls">
               <div class="challenge-prompt"><h3>Choose your next move</h3><button class="reset-button" id="reset-scenario" type="button">Reset <span aria-hidden="true">↺</span></button></div>
@@ -106,7 +148,7 @@
                 <button type="button" class="decision" data-action="database" aria-pressed="false"><span>Upgrade the database</span><span aria-hidden="true">↗</span></button>
               </div>
               <div class="decision-result" role="status" aria-live="polite" aria-atomic="true"><strong id="result-label">Where would you invest?</strong><p id="result-text">Choose an upgrade to see what happens.</p></div>
-              <noscript><p>Open the prototype to try the game.</p></noscript>
+              <noscript><p>Open the game to try real decisions.</p></noscript>
             </div>
           </div>
         </div>
@@ -115,16 +157,17 @@
       <section id="questions" class="section container faq-section" aria-labelledby="faq-title">
         <h2 id="faq-title">Before you play</h2>
         <div class="faq-list">
-          <details><summary>Do I need production experience?<span aria-hidden="true">+</span></summary><p>No. Basic web-development knowledge is enough. Explore how scaling, caching, and databases work together by seeing the consequences of your choices.</p></details>
-          <details><summary>How do I play?<span aria-hidden="true">+</span></summary><p>Open the free prototype in your browser and press Play. A laptop or desktop works best. There's nothing to install.</p></details>
-          <details><summary>Is this the finished game?<span aria-hidden="true">+</span></summary><p>It's an early prototype by CS3216 Group 5. We're testing the core gameplay and improving it with player feedback.</p></details>
+          <details><summary>Do I need production experience?<span aria-hidden="true">+</span></summary><p>No. Basic web-development knowledge is enough. You learn how scaling, caching, databases and failover work together by seeing the consequences of your choices.</p></details>
+          <details><summary>How do I play?<span aria-hidden="true">+</span></summary><p>Open the game in your browser and choose Campaign or Classic. A laptop or desktop works best. There's nothing to install.</p></details>
+          <details><summary>Do I need an account?<span aria-hidden="true">+</span></summary><p>No. You can play as a guest, and your progress stays in that browser. Sign in with Google from the title screen to save your company to your account.</p></details>
+          <details><summary>Is this the finished game?<span aria-hidden="true">+</span></summary><p>Not yet. CS3216 Group 5 is building it and adding to it every week. Use the Give feedback button in the game to tell us what to improve.</p></details>
         </div>
       </section>
 
       <section class="final-cta container" aria-labelledby="cta-title">
         <h2 id="cta-title">Think your system<br />can handle it?</h2>
         <p>Play a run. See what breaks. Figure out your next move.</p>
-        <a class="button button-primary" data-prototype-link href="https://99-99-percent-web.vercel.app/">Play the prototype <span aria-hidden="true">↗</span></a>
+        <a class="button button-primary" data-game-link href="https://99-99-percent-web.vercel.app/">Play free in your browser <span aria-hidden="true">↗</span></a>
       </section>
     </main>
     <footer class="site-footer container"><a class="brand" href="#" aria-label="99.99% home"><span>99.99<span class="highlight">%</span></span></a><span>Made by CS3216 Group 5.</span></footer>
