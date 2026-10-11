@@ -62,6 +62,8 @@
   /* One colour per idea, and status */
   --c-users: #4cb8ff;
   --c-revenue: #2dd4bf;
+  --c-tech: #a985ff;
+  --c-growth: #ff7ad9;
   --go: #ffd84a;
   --go-hover: #ffe680;
   --focus: #4cb8ff;
@@ -125,6 +127,9 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 600; letter-spacing:
 .concept-go { background: var(--go); }
 .concept-ok { background: var(--ok); }
 .concept-critical { background: var(--critical); color: #fff; }
+.concept-tech { background: var(--c-tech); }
+.concept-growth { background: var(--c-growth); }
+[hidden] { display: none !important; }
 .tag { display: inline-flex; align-items: center; padding: 1px 10px; background: var(--paper-3); color: var(--ink); border: 2px solid var(--ink); border-radius: var(--radius); font-family: var(--font-display); font-size: 16px; font-weight: 600; line-height: 1.5; white-space: nowrap; }
 
 /* Navigation: the game's top bar */
@@ -164,6 +169,21 @@ h2 { font-size: clamp(34px, 3vw, 44px); line-height: 1.15; text-shadow: 3px 3px 
 .section-intro h2 { margin-bottom: 0; }
 .section-intro > p { max-width: 400px; color: var(--on-night-soft); margin-bottom: 0; }
 h3 { font-size: 26px; line-height: 1.25; margin-bottom: 10px; }
+
+/* By the numbers: the game's stat tiles, with digits in bold Rubik as in its HUD */
+.numbers { padding-bottom: 0; }
+.live-stats { margin-bottom: 24px; }
+.live-label { display: flex; align-items: center; gap: 10px; margin: 0 0 14px; font-family: var(--font-display); font-size: 18px; color: var(--on-night-soft); }
+.live-label .live-dot { animation: blink 1.2s steps(2) infinite; }
+.stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; margin: 0; }
+/* The label comes first for screen readers; the number leads visually. */
+.stat { display: flex; flex-direction: column-reverse; justify-content: flex-end; gap: 12px; padding: 24px 26px; background: var(--night-2); border: 3px solid var(--ink); border-radius: 6px; box-shadow: var(--night-panel); }
+.stat dd { display: flex; align-items: center; gap: 16px; margin: 0; }
+.stat dt { font-size: 18px; font-weight: 500; line-height: 1.4; color: var(--on-night-soft); }
+.stat-value { font-family: var(--font-body); font-size: clamp(44px, 4.2vw, 62px); font-weight: 700; line-height: 1; font-variant-numeric: tabular-nums; color: var(--on-night); text-shadow: 3px 3px 0 var(--ink); }
+.live-stats .stat { background: var(--paper); }
+.live-stats .stat dt { color: var(--text-soft); }
+.live-stats .stat-value { color: var(--ink); text-shadow: none; }
 
 /* Two ways to play: the title screen's paper mode cards */
 .mode-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; }

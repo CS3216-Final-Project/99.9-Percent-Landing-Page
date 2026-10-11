@@ -3,6 +3,9 @@
   "framework": null,
   "buildCommand": "node build.mjs",
   "outputDirectory": "dist",
+  "rewrites": [
+    { "source": "/api/stats", "destination": "https://99-99-percent-backend.vercel.app/api/stats" }
+  ],
   "headers": [
     {
       "source": "/(.*)",

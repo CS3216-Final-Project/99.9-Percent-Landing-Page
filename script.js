@@ -88,3 +88,55 @@ decisionButtons.forEach((button) => {
   button.addEventListener("click", () => showScenario(button.dataset.action));
 });
 document.querySelector("#reset-scenario").addEventListener("click", () => showScenario("initial"));
+
+// Live counts come from the game's backend through the same-origin /api/stats
+// rewrite in vercel.json. The tiles stay hidden unless every count is a real,
+// consistent number, so the page never shows a placeholder or a guessed figure.
+const liveStats = document.querySelector("#live-stats");
+const statKeys = ["signups", "signupsLast7Days", "cloudSaves"];
+const formatCount = new Intl.NumberFormat("en-US");
+
+function isCount(value) {
+  return Number.isSafeInteger(value) && value >= 0;
+}
+
+function countUp(element, target) {
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reduceMotion || target === 0) {
+    element.textContent = formatCount.format(target);
+    return;
+  }
+  const duration = 900;
+  const start = performance.now();
+  const step = (now) => {
+    const progress = Math.min((now - start) / duration, 1);
+    const eased = 1 - (1 - progress) ** 3;
+    element.textContent = formatCount.format(Math.round(target * eased));
+    if (progress < 1) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+}
+
+async function loadLiveStats() {
+  try {
+    const response = await fetch("/api/stats", { headers: { Accept: "application/json" }, signal: AbortSignal.timeout(6000) });
+    if (!response.ok) return;
+    const stats = await response.json();
+    if (!stats || !statKeys.every((key) => isCount(stats[key])) || stats.signupsLast7Days > stats.signups) return;
+    const values = statKeys.map((key) => [liveStats.querySelector(`[data-stat="${key}"]`), stats[key]]);
+    values.forEach(([element, value]) => { element.textContent = formatCount.format(value); });
+    liveStats.hidden = false;
+    // Count up once the numbers scroll into view.
+    if (!("IntersectionObserver" in window)) return;
+    const observer = new IntersectionObserver((entries) => {
+      if (!entries.some((entry) => entry.isIntersecting)) return;
+      observer.disconnect();
+      values.forEach(([element, value]) => countUp(element, value));
+    }, { threshold: 0.4 });
+    observer.observe(liveStats);
+  } catch {
+    // Offline, blocked or timed out: keep the live numbers hidden.
+  }
+}
+
+loadLiveStats();

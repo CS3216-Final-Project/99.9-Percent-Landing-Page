@@ -34,6 +34,7 @@ Import this repository into Vercel and choose the branch you want to publish. `v
 ## Page content
 
 - Hero with positioning, play and account CTAs, and a real Campaign incident screenshot.
+- By the numbers: live counts of players signed up, sign-ups in the last seven days and companies saved to the cloud, above fixed game facts (5 chapters, 9 upgrades, 50,000 users in 26 weeks).
 - Campaign and Classic modes, each with an in-game screenshot.
 - The five Campaign chapters: Opening, Scaling & Routing, Data Strategy, Traffic Spikes & Autoscaling, and Stay Online.
 - Accounts: Google sign-in, cloud saves, and guest play with save-file export.
@@ -49,13 +50,17 @@ The example starts at 900 requests/s, 1,000 requests/s of application capacity, 
 
 - `index.html`: positioning, FAQ, CTA destination, and page structure. Every link to the game uses `data-game-link` for easy discovery.
 - `styles.css`: the game's colour tokens and components, self-hosted fonts, responsive layout, and reduced-motion styles.
-- `script.js`: navigation and the illustrative scenario.
+- `script.js`: navigation, the illustrative scenario and the live numbers.
 - `assets/gameplay-*.webp`: production screenshots; `assets/social-preview.jpg`: 1200×630 link preview; `assets/favicon.svg`: the game's own favicon.
 - `assets/fonts/`: Pixelify Sans and Rubik from Fontsource, self-hosted because the Content Security Policy allows only same-origin fonts. Both are under the SIL Open Font License; see the licence files beside them.
 - Icons are inline SVG paths from [pixelarticons](https://github.com/halfmage/pixelarticons), the game's icon set (MIT; `assets/LICENSE-pixelarticons.txt`).
 
-The landing page has no form, signup backend or marketing analytics, and sends no automatic tracking requests. Count sign-ups from accounts created in the game. Add analytics only after deciding what events are required.
+The landing page has no form, signup backend or marketing analytics, and sends no tracking requests. Count sign-ups from accounts created in the game. Add analytics only after deciding what events are required.
+
+### Live numbers
+
+`script.js` fetches `/api/stats`, which `vercel.json` rewrites to the game backend's public `GET /api/stats` (aggregate counts only, cached by the backend's CDN for 60 seconds). The live tiles stay hidden unless every count is a non-negative integer and the weekly count does not exceed the total, so a failed request, a timeout or an older backend without the endpoint shows only the fixed facts. The counts include the team's own accounts. `server.mjs` has no proxy, so locally the live tiles stay hidden; test them by intercepting `/api/stats` in the browser.
 
 ## Verification
 
-Build with `node build.mjs`. Check desktop and mobile widths, all three scenario outcomes and reset, navigation and Escape handling, FAQ expansion, game link destinations, keyboard access, and the no-JavaScript fallback before publishing.
+Build with `node build.mjs`. Check desktop and mobile widths, the live numbers with a valid response and with a failed one, all three scenario outcomes and reset, navigation and Escape handling, FAQ expansion, game link destinations, keyboard access, and the no-JavaScript fallback before publishing.
