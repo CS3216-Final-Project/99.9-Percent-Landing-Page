@@ -18,6 +18,7 @@
     <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml" />
     <link rel="preload" href="./assets/fonts/space-grotesk-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="./assets/fonts/source-sans-3-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="./assets/gameplay-incident.webp" as="image" type="image/webp" fetchpriority="high" />
     <link rel="stylesheet" href="./styles.css" />
     <script src="./script.js" defer></script>
   </head>
@@ -29,6 +30,7 @@
         <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open navigation"><span></span><span></span></button>
         <nav id="site-nav" class="site-nav" aria-label="Main navigation">
           <a href="#modes">The game</a>
+          <a href="#trailer">Trailer</a>
           <a href="#chapters">Chapters</a>
           <a class="button button-primary nav-cta" data-game-link href="https://99-99-percent-web.vercel.app/"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 11h-2V9h2zm0 4h-2v-2h2zm-2 2h-2v-2h2zm0-8h-2V7h2zm-2-2H9V5h2zM9 21H7V3h2zm6-8h2v-2h-2zm-6 4h2v2H9z"/></svg>Play now</a>
         </nav>
@@ -40,9 +42,11 @@
         <section class="hero container" aria-labelledby="hero-title">
           <div class="hero-copy">
             <h1 id="hero-title">Break production<br /><span class="highlight">without getting fired.</span></h1>
-            <p class="hero-description">Push an update on a Friday, watch your app buckle as thousands of new users pour in, and learn how real websites stay online. No angry boss. No 3 a.m. phone calls.</p>
+            <!-- script.js swaps in one of several taglines at random. -->
+            <p class="hero-description" id="hero-tagline">Ever wondered what really happens when a site crashes during a concert ticket drop or a viral post? Take the wheel and keep the internet running when millions hit refresh.</p>
             <div class="hero-actions">
               <a class="button button-primary button-big" data-game-link href="https://99-99-percent-web.vercel.app/"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 11h-2V9h2zm0 4h-2v-2h2zm-2 2h-2v-2h2zm0-8h-2V7h2zm-2-2H9V5h2zM9 21H7V3h2zm6-8h2v-2h-2zm-6 4h2v2H9z"/></svg>Play free in your browser</a>
+              <a class="button button-big" href="#trailer"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v2H4zm0 12h16v2H4zM2 7h2v10H2zm18 0h2v10h-2zm-10 2h2v6h-2zm2 1h2v4h-2zm2 1h1v2h-1z"/></svg>Watch the trailer</a>
             </div>
             <p class="hero-note">No download · Play as a guest or sign in with Google</p>
           </div>
@@ -60,12 +64,18 @@
         </section>
       </div>
 
-      <section class="section container showcase" aria-label="In-game screenshot">
-        <figure class="game-preview">
-          <div class="preview-topbar"><span><span class="live-dot" aria-hidden="true"></span>Campaign · Chapter 1</span><span class="tag">In-game screenshot</span></div>
-          <img class="screenshot" src="./assets/gameplay-incident.webp" width="1600" height="1000" alt="99.99% during a Service slowdown incident: the database glows red in the 3D office while the incident panel shows 1,100 ms latency, a backlog of 600 and three responses to choose from." />
-          <figcaption><span class="concept concept-critical" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24"><path d="M6 11h2v5H6zm2-2h2v2H8zm2-2h4v2h-4zm4 2h2v2h-2zm2 2h2v5h-2zM6 16h12v2H6zm-2 4h16v2H4zm0-2h2v2H4zm14 0h2v2h-2zm-7-6h2v4h-2zm9-1h3v2h-3zM1 11h3v2H1zm5-6h2v2H6zm10 0h2v2h-2zm2-2h2v2h-2zM4 3h2v2H4zm7-1h2v3h-2z"/></svg></span><span><strong>Service slowdown.</strong> Latency is at 1,100 ms and 600 requests are waiting.</span></figcaption>
-        </figure>
+      <section id="trailer" class="section container trailer" aria-labelledby="trailer-title">
+        <div class="trailer-copy">
+          <h2 id="trailer-title">Watch it <span class="highlight">break.</span></h2>
+          <p>The official trailer shows what you're in for. Follow us on Instagram for updates, behind-the-scenes and new chapters as they land.</p>
+          <div class="trailer-actions">
+            <a class="button button-primary" href="https://www.instagram.com/99_99percent/" target="_blank" rel="noopener"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3h14v2H5zm0 16h14v2H5zM3 5h2v14H3zm16 0h2v14h-2zm-9 3h4v2h-4zm0 6h4v2h-4zm-2-4h2v4H8zm6 0h2v4h-2zm2-4h2v2h-2z"/></svg>Follow @99_99percent</a>
+            <a class="button" href="https://youtu.be/g9RYyEhZKcE" target="_blank" rel="noopener"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v2H4zm0 12h16v2H4zM2 7h2v10H2zm18 0h2v10h-2zm-10 2h2v6h-2zm2 1h2v4h-2zm2 1h1v2h-1z"/></svg>Watch on YouTube</a>
+          </div>
+        </div>
+        <div class="trailer-video">
+          <iframe src="https://www.youtube-nocookie.com/embed/g9RYyEhZKcE" title="99.99% official trailer" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
       </section>
 
       <section id="numbers" class="section container numbers" aria-labelledby="numbers-title">
@@ -187,6 +197,13 @@
         <a class="button button-primary button-big" data-game-link href="https://99-99-percent-web.vercel.app/"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 11h-2V9h2zm0 4h-2v-2h2zm-2 2h-2v-2h2zm0-8h-2V7h2zm-2-2H9V5h2zM9 21H7V3h2zm6-8h2v-2h-2zm-6 4h2v2H9z"/></svg>Play free in your browser</a>
       </section>
     </main>
-    <footer class="site-footer container"><a class="brand" href="#" aria-label="99.99% home">99.99%</a><span>Made by CS3216 Group 5.</span></footer>
+    <footer class="site-footer container">
+      <a class="brand" href="#" aria-label="99.99% home">99.99%</a>
+      <nav class="socials" aria-label="99.99% on social media">
+        <a href="https://www.instagram.com/99_99percent/" target="_blank" rel="noopener" aria-label="Instagram"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3h14v2H5zm0 16h14v2H5zM3 5h2v14H3zm16 0h2v14h-2zm-9 3h4v2h-4zm0 6h4v2h-4zm-2-4h2v4H8zm6 0h2v4h-2zm2-4h2v2h-2z"/></svg></a>
+        <a href="https://youtu.be/g9RYyEhZKcE" target="_blank" rel="noopener" aria-label="YouTube trailer"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v2H4zm0 12h16v2H4zM2 7h2v10H2zm18 0h2v10h-2zm-10 2h2v6h-2zm2 1h2v4h-2zm2 1h1v2h-1z"/></svg></a>
+      </nav>
+      <span>Made by CS3216 Group 5.</span>
+    </footer>
   </body>
 </html>

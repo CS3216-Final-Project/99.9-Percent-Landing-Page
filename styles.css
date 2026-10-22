@@ -104,7 +104,6 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 600; letter-spacing:
 .concept-tech { background: var(--c-tech); }
 .concept-growth { background: var(--c-growth); }
 [hidden] { display: none !important; }
-.tag { display: inline-flex; align-items: center; padding: 1px 10px; background: var(--paper-3); color: var(--ink); border: 2px solid var(--ink); border-radius: var(--radius); font-family: var(--font-display); font-size: 16px; font-weight: 600; line-height: 1.5; white-space: nowrap; }
 
 /* Navigation: the game's top bar */
 .site-header { background: var(--night-2); border-bottom: 3px solid var(--ink); }
@@ -117,16 +116,55 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 600; letter-spacing:
 .menu-toggle { display: none; }
 
 /* Hero: the pitch and the way in, beside the incident sign */
-.hero-band { background-image: linear-gradient(rgb(75 66 132 / .22) 2px, transparent 2px), linear-gradient(90deg, rgb(75 66 132 / .22) 2px, transparent 2px); background-size: 48px 48px; border-bottom: 3px solid var(--ink); }
-.hero { display: grid; grid-template-columns: 1fr 1.05fr; align-items: center; gap: 52px; padding-block: 88px; }
+/* The in-game screenshot fills the hero from the right and fades into the night towards the text. */
+.hero-band {
+  /* Sized to the hero's height and slid right so the game's side panel falls off the edge, leaving the office. */
+  --hero-image: url("./assets/gameplay-incident.webp") right -280px center / auto 114% no-repeat;
+  /* Stops keep pace with the image on wide screens, so its left edge always sits in solid night. */
+  --hero-fade: linear-gradient(90deg, var(--night) 0%, var(--night) max(28%, 100% - 960px), rgb(26 22 51 / .82) max(46%, 100% - 780px), rgb(26 22 51 / .25) max(72%, 100% - 420px), rgb(26 22 51 / .1) 100%);
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: var(--night);
+  border-bottom: 3px solid var(--ink);
+}
+/* The photo drifts on its own layer, slowly panning and zooming like a game's loading screen. */
+.hero-band::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background: var(--hero-image);
+  transform-origin: 70% 50%;
+  animation: hero-drift 20s ease-in-out infinite alternate;
+  will-change: transform;
+}
+.hero-band::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(rgb(75 66 132 / .14) 2px, transparent 2px) 0 0 / 48px 48px,
+    linear-gradient(90deg, rgb(75 66 132 / .14) 2px, transparent 2px) 0 0 / 48px 48px,
+    linear-gradient(0deg, var(--night) 0%, transparent 20%),
+    linear-gradient(180deg, var(--night-2) 0%, transparent 18%),
+    var(--hero-fade);
+}
+@keyframes hero-drift {
+  0% { transform: scale(1.04) translate(0, 0); }
+  50% { transform: scale(1.14) translate(-2.5%, 1.5%); }
+  100% { transform: scale(1.09) translate(1.5%, -1.5%); }
+}
+.hero { display: grid; grid-template-columns: 1.15fr 1fr; align-items: center; gap: 52px; min-height: 680px; padding-block: 88px; }
 /* This size keeps "Break production" on one line beside the sign. */
 h1 { font-size: clamp(40px, 3.6vw, 54px); line-height: 1.12; margin-bottom: 24px; text-shadow: 4px 4px 0 var(--ink); }
 .hero-description { font-size: 20px; color: var(--on-night-soft); max-width: 520px; line-height: 1.7; margin-bottom: 30px; }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 16px; }
 /* The "0 days since last incident" sticker: white backing, thick black frame, a red marker number on a blank. */
 .hero-sign { display: grid; place-items: center; }
-.incident-sign { display: inline-block; padding: 12px; background: #fff; border-radius: 14px; box-shadow: 0 16px 36px rgb(8 6 22 / .55); transform: rotate(-3deg); }
-.sign-board { display: grid; justify-items: center; gap: 2px; padding: .4em .6em .5em; border: 12px solid #111; color: #111; font-family: var(--font-display); font-size: clamp(40px, 4.6vw, 66px); font-weight: 700; line-height: 1.05; letter-spacing: -.01em; text-transform: uppercase; }
+.incident-sign { display: inline-block; padding: 10px; background: #fff; border-radius: 11px; box-shadow: 0 16px 36px rgb(8 6 22 / .55); transform: rotate(-3deg); }
+.sign-board { display: grid; justify-items: center; gap: 2px; padding: .4em .6em .5em; border: 10px solid #111; color: #111; font-family: var(--font-display); font-size: clamp(32px, 3.7vw, 53px); font-weight: 700; line-height: 1.05; letter-spacing: -.01em; text-transform: uppercase; }
 .sign-top { display: flex; align-items: flex-end; gap: .35em; }
 /* Sized for three digits so DAYS stays put while leading digits drop away. */
 .sign-count { display: inline-flex; justify-content: center; min-width: 2em; height: 1em; overflow: hidden; border-bottom: .07em solid #111; color: #e8401c; font-family: var(--font-num); font-size: 1.3em; font-variant-numeric: tabular-nums; line-height: 1; transform: skewX(-8deg); }
@@ -134,16 +172,7 @@ h1 { font-size: clamp(40px, 3.6vw, 54px); line-height: 1.12; margin-bottom: 24px
 .sign-digit.is-off { width: 0; opacity: 0; }
 .sign-strip { display: flex; flex-direction: column; text-align: center; will-change: transform; }
 .hero-note { font-size: 16px; color: var(--on-night-soft); margin: 20px 0 0; }
-/* The in-game screenshot gets the full width of its own section below the hero. */
-.showcase { padding-bottom: 0; }
-.game-preview { margin: 0; overflow: hidden; background: var(--night-2); border: 3px solid var(--ink); border-radius: 6px; box-shadow: var(--night-panel); }
-.preview-topbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; padding: 14px 18px; border-bottom: 3px solid var(--ink); font-family: var(--font-display); font-size: 18px; }
-.preview-topbar > span:first-child { display: inline-flex; align-items: center; gap: 10px; }
 .live-dot { width: 10px; height: 10px; background: var(--ok); border: 2px solid var(--ink); flex: none; }
-.screenshot { display: block; width: 100%; height: auto; background: var(--night-3); }
-.game-preview figcaption { display: flex; align-items: center; gap: 14px; padding: 16px 18px; background: repeating-linear-gradient(-45deg, #4a1630 0 18px, #3d1228 18px 36px); border-top: 3px solid var(--ink); font-size: 19px; line-height: 1.45; }
-.game-preview figcaption .concept { width: 44px; height: 44px; }
-.game-preview figcaption strong { font-family: var(--font-display); font-weight: 600; color: #fff; }
 
 /* Sections */
 .section { padding-block: 88px; }
@@ -233,6 +262,13 @@ h3 { font-size: 26px; line-height: 1.25; margin-bottom: 10px; }
 .decision-result p { font-size: 18px; line-height: 1.6; margin: 6px 0 0; }
 
 /* Questions and the closing invitation */
+/* The trailer and socials */
+.trailer { display: grid; grid-template-columns: .8fr 1.2fr; gap: 56px; align-items: center; padding-bottom: 0; }
+.trailer-copy > p { color: var(--on-night-soft); margin-bottom: 0; }
+.trailer-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 28px; }
+.trailer-video { aspect-ratio: 16 / 9; overflow: hidden; background: var(--night-3); border: 3px solid var(--ink); border-radius: 6px; box-shadow: var(--night-panel); }
+.trailer-video iframe { display: block; width: 100%; height: 100%; border: 0; }
+
 .faq-section { display: grid; grid-template-columns: .8fr 1.2fr; gap: 60px; }
 .faq-list { border-top: 2px solid var(--night-line); }
 details { border-bottom: 2px solid var(--night-line); }
@@ -246,6 +282,9 @@ details p { color: var(--on-night-soft); font-size: 18px; margin: 0 20px 24px 0;
 .final-cta p { color: var(--on-night-soft); margin-bottom: 30px; }
 .site-footer { min-height: 132px; display: flex; align-items: center; justify-content: space-between; gap: 24px; margin-top: 88px; }
 .site-footer .brand { font-size: 28px; }
+.socials { display: flex; gap: 12px; }
+.socials a { display: grid; place-content: center; width: 48px; height: 48px; color: var(--on-night-soft); border: 2px solid var(--night-line); border-radius: var(--radius); }
+.socials a:hover { color: var(--on-night); border-color: var(--on-night-soft); }
 .site-footer > span { color: var(--on-night-soft); font-size: 16px; }
 
 @media (max-width: 1100px) {
@@ -261,16 +300,19 @@ details p { color: var(--on-night-soft); font-size: 18px; margin: 0 20px 24px 0;
 
 @media (max-width: 900px) {
   .hero { grid-template-columns: 1fr; gap: 48px; padding-block: 60px; }
+  /* One column: the text sits over the image, so it dims evenly instead of fading sideways. */
+  .hero-band { --hero-image: url("./assets/gameplay-incident.webp") center / cover no-repeat; --hero-fade: linear-gradient(180deg, rgb(26 22 51 / .94) 0%, rgb(26 22 51 / .88) 55%, rgb(26 22 51 / .6) 100%); }
   .hero-copy { max-width: 620px; margin-inline: auto; text-align: center; }
   h1 { font-size: 50px; }
   .hero-description { margin-inline: auto; }
   .hero-actions { justify-content: center; }
-  .sign-board { font-size: 48px; }
+  .sign-board { font-size: 38px; }
   .section { padding-block: 64px; }
   .section-intro { flex-direction: column; align-items: flex-start; gap: 20px; }
   .section-intro > p { max-width: 600px; }
   .mode-grid { grid-template-columns: 1fr; max-width: 720px; margin-inline: auto; }
   .chapter-list li > div { grid-template-columns: 1fr; gap: 8px; }
+  .trailer { grid-template-columns: 1fr; gap: 32px; }
   .faq-section { grid-template-columns: 1fr; gap: 20px; }
   .faq-section h2 { margin-bottom: 14px; }
   .site-nav { gap: 24px; }
@@ -287,13 +329,11 @@ details p { color: var(--on-night-soft); font-size: 18px; margin: 0 20px 24px 0;
   .js .site-nav { display: none; }
   .js .site-nav.is-open { display: flex; }
   .hero { padding-block: 40px 56px; gap: 40px; }
-  .incident-sign { padding: 9px; }
-  .sign-board { font-size: 34px; border-width: 9px; }
+  .incident-sign { padding: 7px; }
+  .sign-board { font-size: 27px; border-width: 7px; }
   h1 { font-size: clamp(40px, 11vw, 56px); text-shadow: 3px 3px 0 var(--ink); }
   .hero-actions .button { width: 100%; }
   .button-big { font-size: 20px; padding-inline: 18px; }
-  .preview-topbar { padding: 12px 14px; font-size: 16px; }
-  .game-preview figcaption { font-size: 17px; padding: 14px; gap: 12px; }
   .section { padding-block: 56px; }
   h2 { font-size: 34px; text-shadow: 2px 2px 0 var(--ink); }
   .section-intro { margin-bottom: 28px; }
