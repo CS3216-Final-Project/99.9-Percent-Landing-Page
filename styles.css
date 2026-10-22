@@ -1,49 +1,23 @@
 @charset "UTF-8";
 
 /*
- * The landing page wears the game's look (see frontend/src/index.css in the
- * game repo): an indigo night, cream paper cards with ink outlines, yellow
- * buttons that press down, Pixelify Sans for headings and Rubik for reading.
- * Type sizes stay larger than the game's: body copy 18-20px, nothing under 16px.
+ * The landing page wears the game's look: an indigo night, cream paper cards
+ * with ink outlines, yellow buttons that press down. Type matches the game:
+ * Space Grotesk for headings, controls and labels, Source Sans 3 for reading,
+ * Pixelify Sans (700) for the 99.99% logo only, and Space Grotesk with
+ * tabular figures for numbers. Sizes stay larger than the game's: body 18-20px.
  */
 
-/* Pixelify for words, Rubik for digits: Pixelify's 2, 5 and 8 are too alike to read at a glance. */
-@font-face {
-  font-family: "Pixelify Letters";
-  font-style: normal;
-  font-display: swap;
-  font-weight: 500;
-  src: url("./assets/fonts/pixelify-sans-latin-500-normal.woff2") format("woff2");
-  unicode-range: U+0020-002F, U+003A-00FF, U+2013-2014, U+2018-201E, U+2026, U+2192;
-}
-@font-face {
-  font-family: "Pixelify Letters";
-  font-style: normal;
-  font-display: swap;
-  font-weight: 600;
-  src: url("./assets/fonts/pixelify-sans-latin-600-normal.woff2") format("woff2");
-  unicode-range: U+0020-002F, U+003A-00FF, U+2013-2014, U+2018-201E, U+2026, U+2192;
-}
-@font-face {
-  font-family: "Pixelify Letters";
-  font-style: normal;
-  font-display: swap;
-  font-weight: 700;
-  src: url("./assets/fonts/pixelify-sans-latin-700-normal.woff2") format("woff2");
-  unicode-range: U+0020-002F, U+003A-00FF, U+2013-2014, U+2018-201E, U+2026, U+2192;
-}
-/* The full face, digits included, is only for the 99.99% logo. */
-@font-face {
-  font-family: "Pixelify Sans";
-  font-style: normal;
-  font-display: swap;
-  font-weight: 700;
-  src: url("./assets/fonts/pixelify-sans-latin-700-normal.woff2") format("woff2");
-}
-@font-face { font-family: "Rubik"; font-style: normal; font-display: swap; font-weight: 400; src: url("./assets/fonts/rubik-latin-400-normal.woff2") format("woff2"); }
-@font-face { font-family: "Rubik"; font-style: normal; font-display: swap; font-weight: 500; src: url("./assets/fonts/rubik-latin-500-normal.woff2") format("woff2"); }
-@font-face { font-family: "Rubik"; font-style: normal; font-display: swap; font-weight: 600; src: url("./assets/fonts/rubik-latin-600-normal.woff2") format("woff2"); }
-@font-face { font-family: "Rubik"; font-style: normal; font-display: swap; font-weight: 700; src: url("./assets/fonts/rubik-latin-700-normal.woff2") format("woff2"); }
+@font-face { font-family: "Space Grotesk"; font-style: normal; font-display: swap; font-weight: 400; src: url("./assets/fonts/space-grotesk-latin-400-normal.woff2") format("woff2"); }
+@font-face { font-family: "Space Grotesk"; font-style: normal; font-display: swap; font-weight: 500; src: url("./assets/fonts/space-grotesk-latin-500-normal.woff2") format("woff2"); }
+@font-face { font-family: "Space Grotesk"; font-style: normal; font-display: swap; font-weight: 600; src: url("./assets/fonts/space-grotesk-latin-600-normal.woff2") format("woff2"); }
+@font-face { font-family: "Space Grotesk"; font-style: normal; font-display: swap; font-weight: 700; src: url("./assets/fonts/space-grotesk-latin-700-normal.woff2") format("woff2"); }
+@font-face { font-family: "Source Sans 3"; font-style: normal; font-display: swap; font-weight: 400; src: url("./assets/fonts/source-sans-3-latin-400-normal.woff2") format("woff2"); }
+@font-face { font-family: "Source Sans 3"; font-style: normal; font-display: swap; font-weight: 500; src: url("./assets/fonts/source-sans-3-latin-500-normal.woff2") format("woff2"); }
+@font-face { font-family: "Source Sans 3"; font-style: normal; font-display: swap; font-weight: 600; src: url("./assets/fonts/source-sans-3-latin-600-normal.woff2") format("woff2"); }
+@font-face { font-family: "Source Sans 3"; font-style: normal; font-display: swap; font-weight: 700; src: url("./assets/fonts/source-sans-3-latin-700-normal.woff2") format("woff2"); }
+/* The logo is the only place Pixelify Sans appears. */
+@font-face { font-family: "Pixelify Sans"; font-style: normal; font-display: swap; font-weight: 700; src: url("./assets/fonts/pixelify-sans-latin-700-normal.woff2") format("woff2"); }
 
 :root {
   /* The game's surfaces */
@@ -72,9 +46,10 @@
   --critical: #ff4d5e;
   --critical-ink: #c41d33;
 
-  --font-display: "Pixelify Letters", "Rubik", system-ui, sans-serif;
-  --font-logo: "Pixelify Sans", "Rubik", system-ui, sans-serif;
-  --font-body: "Rubik", "Segoe UI", system-ui, sans-serif;
+  --font-display: "Space Grotesk", system-ui, sans-serif;
+  --font-logo: "Pixelify Sans", "Space Grotesk", system-ui, sans-serif;
+  --font-body: "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+  --font-num: "Space Grotesk", system-ui, sans-serif;
 
   --radius: 4px;
   --press: 0 3px 0 0 var(--ink);
@@ -93,9 +68,8 @@ body {
   font-family: var(--font-body);
   font-size: 20px;
   line-height: 1.65;
-  /* Pixelify Sans joins "fi" into a glyph that reads as "A". */
-  font-variant-ligatures: none;
   -webkit-font-smoothing: antialiased;
+  font-variant-numeric: tabular-nums;
 }
 a { color: inherit; text-decoration: none; }
 button { font: inherit; color: inherit; cursor: pointer; }
@@ -130,7 +104,6 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 600; letter-spacing:
 .concept-tech { background: var(--c-tech); }
 .concept-growth { background: var(--c-growth); }
 [hidden] { display: none !important; }
-.tag { display: inline-flex; align-items: center; padding: 1px 10px; background: var(--paper-3); color: var(--ink); border: 2px solid var(--ink); border-radius: var(--radius); font-family: var(--font-display); font-size: 16px; font-weight: 600; line-height: 1.5; white-space: nowrap; }
 
 /* Navigation: the game's top bar */
 .site-header { background: var(--night-2); border-bottom: 3px solid var(--ink); }
@@ -142,24 +115,64 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 600; letter-spacing:
 .nav-cta { min-height: 48px; padding: 8px 16px; font-size: 18px; }
 .menu-toggle { display: none; }
 
-/* Hero: the title screen's kicker, pitch and way in, beside a real screenshot */
-.hero-band { background-image: linear-gradient(rgb(75 66 132 / .22) 2px, transparent 2px), linear-gradient(90deg, rgb(75 66 132 / .22) 2px, transparent 2px); background-size: 48px 48px; border-bottom: 3px solid var(--ink); }
-.hero { display: grid; grid-template-columns: 1fr 1.05fr; align-items: center; gap: 52px; padding-block: 88px; }
-.kicker { display: inline-flex; align-items: center; gap: 8px; padding: 4px 12px 4px 8px; margin-bottom: 22px; background: var(--night-3); border: 2px solid var(--night-line); border-radius: var(--radius); font-family: var(--font-display); font-size: 18px; color: var(--on-night-soft); }
-.kicker .icon { width: 20px; height: 20px; color: var(--ok); animation: blink 1.2s steps(2) infinite; }
-/* Pixelify is wide: this size keeps "Your side project." on one line beside the screenshot. */
+/* Hero: the pitch and the way in, beside the incident sign */
+/* The in-game screenshot fills the hero from the right and fades into the night towards the text. */
+.hero-band {
+  /* Sized to the hero's height and slid right so the game's side panel falls off the edge, leaving the office. */
+  --hero-image: url("./assets/gameplay-incident.webp") right -280px center / auto 114% no-repeat;
+  /* Stops keep pace with the image on wide screens, so its left edge always sits in solid night. */
+  --hero-fade: linear-gradient(90deg, var(--night) 0%, var(--night) max(28%, 100% - 960px), rgb(26 22 51 / .82) max(46%, 100% - 780px), rgb(26 22 51 / .25) max(72%, 100% - 420px), rgb(26 22 51 / .1) 100%);
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: var(--night);
+  border-bottom: 3px solid var(--ink);
+}
+/* The photo drifts on its own layer, slowly panning and zooming like a game's loading screen. */
+.hero-band::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background: var(--hero-image);
+  transform-origin: 70% 50%;
+  animation: hero-drift 20s ease-in-out infinite alternate;
+  will-change: transform;
+}
+.hero-band::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(rgb(75 66 132 / .14) 2px, transparent 2px) 0 0 / 48px 48px,
+    linear-gradient(90deg, rgb(75 66 132 / .14) 2px, transparent 2px) 0 0 / 48px 48px,
+    linear-gradient(0deg, var(--night) 0%, transparent 20%),
+    linear-gradient(180deg, var(--night-2) 0%, transparent 18%),
+    var(--hero-fade);
+}
+@keyframes hero-drift {
+  0% { transform: scale(1.04) translate(0, 0); }
+  50% { transform: scale(1.14) translate(-2.5%, 1.5%); }
+  100% { transform: scale(1.09) translate(1.5%, -1.5%); }
+}
+.hero { display: grid; grid-template-columns: 1.15fr 1fr; align-items: center; gap: 52px; min-height: 680px; padding-block: 88px; }
+/* This size keeps "Break production" on one line beside the sign. */
 h1 { font-size: clamp(40px, 3.6vw, 54px); line-height: 1.12; margin-bottom: 24px; text-shadow: 4px 4px 0 var(--ink); }
 .hero-description { font-size: 20px; color: var(--on-night-soft); max-width: 520px; line-height: 1.7; margin-bottom: 30px; }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 16px; }
+/* The "0 days since last incident" sticker: white backing, thick black frame, a red marker number on a blank. */
+.hero-sign { display: grid; place-items: center; }
+.incident-sign { display: inline-block; padding: 10px; background: #fff; border-radius: 11px; box-shadow: 0 16px 36px rgb(8 6 22 / .55); transform: rotate(-3deg); }
+.sign-board { display: grid; justify-items: center; gap: 2px; padding: .4em .6em .5em; border: 10px solid #111; color: #111; font-family: var(--font-display); font-size: clamp(32px, 3.7vw, 53px); font-weight: 700; line-height: 1.05; letter-spacing: -.01em; text-transform: uppercase; }
+.sign-top { display: flex; align-items: flex-end; gap: .35em; }
+/* Sized for three digits so DAYS stays put while leading digits drop away. */
+.sign-count { display: inline-flex; justify-content: center; min-width: 2em; height: 1em; overflow: hidden; border-bottom: .07em solid #111; color: #e8401c; font-family: var(--font-num); font-size: 1.3em; font-variant-numeric: tabular-nums; line-height: 1; transform: skewX(-8deg); }
+.sign-digit { display: block; width: .62em; height: 1em; overflow: hidden; transition: width .3s, opacity .3s; }
+.sign-digit.is-off { width: 0; opacity: 0; }
+.sign-strip { display: flex; flex-direction: column; text-align: center; will-change: transform; }
 .hero-note { font-size: 16px; color: var(--on-night-soft); margin: 20px 0 0; }
-.game-preview { margin: 0; overflow: hidden; background: var(--night-2); border: 3px solid var(--ink); border-radius: 6px; box-shadow: var(--night-panel); }
-.preview-topbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; padding: 14px 18px; border-bottom: 3px solid var(--ink); font-family: var(--font-display); font-size: 18px; }
-.preview-topbar > span:first-child { display: inline-flex; align-items: center; gap: 10px; }
 .live-dot { width: 10px; height: 10px; background: var(--ok); border: 2px solid var(--ink); flex: none; }
-.screenshot { display: block; width: 100%; height: auto; background: var(--night-3); }
-.game-preview figcaption { display: flex; align-items: center; gap: 14px; padding: 16px 18px; background: repeating-linear-gradient(-45deg, #4a1630 0 18px, #3d1228 18px 36px); border-top: 3px solid var(--ink); font-size: 19px; line-height: 1.45; }
-.game-preview figcaption .concept { width: 44px; height: 44px; }
-.game-preview figcaption strong { font-family: var(--font-display); font-weight: 600; color: #fff; }
 
 /* Sections */
 .section { padding-block: 88px; }
@@ -170,7 +183,7 @@ h2 { font-size: clamp(34px, 3vw, 44px); line-height: 1.15; text-shadow: 3px 3px 
 .section-intro > p { max-width: 400px; color: var(--on-night-soft); margin-bottom: 0; }
 h3 { font-size: 26px; line-height: 1.25; margin-bottom: 10px; }
 
-/* By the numbers: the game's stat tiles, with digits in bold Rubik as in its HUD */
+/* By the numbers: the game's stat tiles, with digits in tabular Space Grotesk as in its HUD */
 .numbers { padding-bottom: 0; }
 .live-stats { margin-bottom: 24px; }
 .live-label { display: flex; align-items: center; gap: 10px; margin: 0 0 14px; font-family: var(--font-display); font-size: 18px; color: var(--on-night-soft); }
@@ -180,7 +193,7 @@ h3 { font-size: 26px; line-height: 1.25; margin-bottom: 10px; }
 .stat { display: flex; flex-direction: column-reverse; justify-content: flex-end; gap: 12px; padding: 24px 26px; background: var(--night-2); border: 3px solid var(--ink); border-radius: 6px; box-shadow: var(--night-panel); }
 .stat dd { display: flex; align-items: center; gap: 16px; margin: 0; }
 .stat dt { font-size: 18px; font-weight: 500; line-height: 1.4; color: var(--on-night-soft); }
-.stat-value { font-family: var(--font-body); font-size: clamp(44px, 4.2vw, 62px); font-weight: 700; line-height: 1; font-variant-numeric: tabular-nums; color: var(--on-night); text-shadow: 3px 3px 0 var(--ink); }
+.stat-value { font-family: var(--font-num); font-size: clamp(44px, 4.2vw, 62px); font-weight: 700; line-height: 1; font-variant-numeric: tabular-nums; color: var(--on-night); text-shadow: 3px 3px 0 var(--ink); }
 .live-stats .stat { background: var(--paper); }
 .live-stats .stat dt { color: var(--text-soft); }
 .live-stats .stat-value { color: var(--ink); text-shadow: none; }
@@ -200,22 +213,12 @@ h3 { font-size: 26px; line-height: 1.25; margin-bottom: 10px; }
 .chapter-list li { display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 20px; align-items: start; padding: 20px 22px; border: 2px solid var(--paper-3); border-radius: var(--radius); }
 .chapter-list li.is-start { background: var(--go); border-color: var(--ink); }
 .chapter-list li > div { display: grid; grid-template-columns: minmax(0, 340px) minmax(0, 1fr); gap: 32px; align-items: baseline; }
-.chapter-number { display: grid; place-content: center; width: 44px; height: 44px; border: 2px solid currentColor; border-radius: 50%; font-size: 19px; font-weight: 700; }
+.chapter-number { display: grid; place-content: center; width: 44px; height: 44px; border: 2px solid currentColor; border-radius: 50%; font-family: var(--font-num); font-variant-numeric: tabular-nums; font-size: 19px; font-weight: 700; }
 .is-start .chapter-number { background: var(--paper); border-color: var(--ink); }
 .chapter-list h3 { margin: 4px 0 0; }
 .chapter-status { display: block; margin-top: 2px; font-size: 16px; font-weight: 600; color: var(--text-soft); }
 .is-start .chapter-status { color: var(--ink); }
 .chapter-list p { margin: 0; }
-
-/* Accounts and cloud saves */
-.account-panel { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; padding: 48px; background: var(--night-3); border: 3px solid var(--ink); border-radius: 6px; box-shadow: var(--night-panel); }
-.account-copy > p { color: var(--on-night-soft); margin-bottom: 28px; }
-.account-copy > .callout { display: flex; align-items: center; gap: 14px; margin: 26px 0 0; padding: 12px 14px 12px 12px; background: #fff9da; color: var(--ink); border: 2px solid var(--ink); border-radius: 6px; box-shadow: var(--press); font-size: 17px; line-height: 1.5; }
-.callout .concept { width: 44px; height: 44px; }
-.account-list { list-style: none; display: grid; gap: 24px; margin: 0; padding: 0; }
-.account-list li { display: grid; grid-template-columns: 48px 1fr; gap: 18px; align-items: start; }
-.account-list h3 { font-size: 24px; margin-bottom: 4px; }
-.account-list p { font-size: 18px; line-height: 1.6; color: var(--on-night-soft); margin: 0; }
 
 /* A taste of the decisions: the incident panel's evidence and response rows */
 .challenge { display: grid; grid-template-columns: 1fr 1fr; overflow: hidden; background: var(--paper); color: var(--ink); border: 3px solid var(--ink); border-radius: 6px; box-shadow: var(--night-panel); }
@@ -259,6 +262,13 @@ h3 { font-size: 26px; line-height: 1.25; margin-bottom: 10px; }
 .decision-result p { font-size: 18px; line-height: 1.6; margin: 6px 0 0; }
 
 /* Questions and the closing invitation */
+/* The trailer and socials */
+.trailer { display: grid; grid-template-columns: .8fr 1.2fr; gap: 56px; align-items: center; padding-bottom: 0; }
+.trailer-copy > p { color: var(--on-night-soft); margin-bottom: 0; }
+.trailer-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 28px; }
+.trailer-video { aspect-ratio: 16 / 9; overflow: hidden; background: var(--night-3); border: 3px solid var(--ink); border-radius: 6px; box-shadow: var(--night-panel); }
+.trailer-video iframe { display: block; width: 100%; height: 100%; border: 0; }
+
 .faq-section { display: grid; grid-template-columns: .8fr 1.2fr; gap: 60px; }
 .faq-list { border-top: 2px solid var(--night-line); }
 details { border-bottom: 2px solid var(--night-line); }
@@ -272,6 +282,9 @@ details p { color: var(--on-night-soft); font-size: 18px; margin: 0 20px 24px 0;
 .final-cta p { color: var(--on-night-soft); margin-bottom: 30px; }
 .site-footer { min-height: 132px; display: flex; align-items: center; justify-content: space-between; gap: 24px; margin-top: 88px; }
 .site-footer .brand { font-size: 28px; }
+.socials { display: flex; gap: 12px; }
+.socials a { display: grid; place-content: center; width: 48px; height: 48px; color: var(--on-night-soft); border: 2px solid var(--night-line); border-radius: var(--radius); }
+.socials a:hover { color: var(--on-night); border-color: var(--on-night-soft); }
 .site-footer > span { color: var(--on-night-soft); font-size: 16px; }
 
 @media (max-width: 1100px) {
@@ -279,7 +292,6 @@ details p { color: var(--on-night-soft); font-size: 18px; margin: 0 20px 24px 0;
   .hero { grid-template-columns: 1fr 1fr; gap: 36px; }
   h1 { font-size: 44px; }
   .chapter-list li > div { grid-template-columns: minmax(0, 260px) minmax(0, 1fr); gap: 24px; }
-  .account-panel { gap: 40px; padding: 40px; }
   .challenge { grid-template-columns: 1fr; }
   .challenge-monitor { border-right: 0; border-bottom: 3px solid var(--paper-3); }
   .architecture { max-width: 660px; margin-inline: auto; gap: 20px; }
@@ -288,17 +300,19 @@ details p { color: var(--on-night-soft); font-size: 18px; margin: 0 20px 24px 0;
 
 @media (max-width: 900px) {
   .hero { grid-template-columns: 1fr; gap: 48px; padding-block: 60px; }
+  /* One column: the text sits over the image, so it dims evenly instead of fading sideways. */
+  .hero-band { --hero-image: url("./assets/gameplay-incident.webp") center / cover no-repeat; --hero-fade: linear-gradient(180deg, rgb(26 22 51 / .94) 0%, rgb(26 22 51 / .88) 55%, rgb(26 22 51 / .6) 100%); }
   .hero-copy { max-width: 620px; margin-inline: auto; text-align: center; }
   h1 { font-size: 50px; }
   .hero-description { margin-inline: auto; }
   .hero-actions { justify-content: center; }
-  .game-preview { max-width: 680px; width: 100%; margin-inline: auto; }
+  .sign-board { font-size: 38px; }
   .section { padding-block: 64px; }
   .section-intro { flex-direction: column; align-items: flex-start; gap: 20px; }
   .section-intro > p { max-width: 600px; }
   .mode-grid { grid-template-columns: 1fr; max-width: 720px; margin-inline: auto; }
   .chapter-list li > div { grid-template-columns: 1fr; gap: 8px; }
-  .account-panel { grid-template-columns: 1fr; }
+  .trailer { grid-template-columns: 1fr; gap: 32px; }
   .faq-section { grid-template-columns: 1fr; gap: 20px; }
   .faq-section h2 { margin-bottom: 14px; }
   .site-nav { gap: 24px; }
@@ -315,12 +329,11 @@ details p { color: var(--on-night-soft); font-size: 18px; margin: 0 20px 24px 0;
   .js .site-nav { display: none; }
   .js .site-nav.is-open { display: flex; }
   .hero { padding-block: 40px 56px; gap: 40px; }
-  .kicker { font-size: 16px; }
+  .incident-sign { padding: 7px; }
+  .sign-board { font-size: 27px; border-width: 7px; }
   h1 { font-size: clamp(40px, 11vw, 56px); text-shadow: 3px 3px 0 var(--ink); }
   .hero-actions .button { width: 100%; }
   .button-big { font-size: 20px; padding-inline: 18px; }
-  .preview-topbar { padding: 12px 14px; font-size: 16px; }
-  .game-preview figcaption { font-size: 17px; padding: 14px; gap: 12px; }
   .section { padding-block: 56px; }
   h2 { font-size: 34px; text-shadow: 2px 2px 0 var(--ink); }
   .section-intro { margin-bottom: 28px; }
@@ -330,9 +343,6 @@ details p { color: var(--on-night-soft); font-size: 18px; margin: 0 20px 24px 0;
   .chapter-list li { grid-template-columns: 40px 1fr; gap: 14px; padding: 16px 14px; }
   .chapter-number { width: 40px; height: 40px; }
   h3 { font-size: 24px; }
-  .account-panel { padding: 26px 18px; gap: 36px; }
-  .account-panel .button { width: 100%; }
-  .account-copy > .callout { align-items: flex-start; }
   .challenge-monitor, .challenge-controls { padding: 22px 16px; }
   .architecture { grid-template-columns: 1fr; gap: 8px; margin-block: 26px; }
   .architecture-node { display: grid; grid-template-columns: 36px 1fr; gap: 2px 16px; min-height: 84px; padding: 14px 18px; text-align: left; }

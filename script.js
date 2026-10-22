@@ -28,6 +28,100 @@ document.addEventListener("keydown", (event) => {
 });
 window.matchMedia("(max-width: 600px)").addEventListener("change", closeNavigation);
 
+// The hero tagline is picked at random on each visit, weighted by chance.
+// The first one is in the HTML, so it also shows without JS.
+const taglines = [
+  [0.4, "Ever wondered what really happens when a site crashes during a concert ticket drop or a viral post? Take the wheel and keep the internet running when millions hit refresh."],
+  [0.15, "Millions of users are hammering your servers. Queues are backing up, the database is maxed out and latency is creeping into the red. Scale up and survive the surge before the whole stack melts down."],
+  [0.15, "Start with a single server in a basement. Grow into load balancers, read caches, autoscaling and automatic failover. Push throughput up, keep latency down and stay on budget."],
+  [0.3, "Stop memorizing system design cheat sheets. Build a real feel for horizontal scaling, caching, rate limiting and failover by playing them out in a live simulation."],
+];
+const tagline = document.querySelector("#hero-tagline");
+
+function pickTagline() {
+  let roll = Math.random();
+  for (const [chance, text] of taglines) {
+    roll -= chance;
+    if (roll < 0) return text;
+  }
+  return taglines[0][1];
+}
+
+if (tagline) tagline.textContent = pickTagline();
+
+// The incident sign winds down from data-countdown to 0 like an odometer: each
+// digit is a vertical strip, and a column only turns while the one to its
+// right rolls between 0 and 9. After that it keeps counting days and keeps
+// getting reset. Without JS or with reduced motion it just reads 0.
+const countdown = document.querySelector("[data-countdown]");
+
+function startCountdown(counter) {
+  const from = Number(counter.dataset.countdown);
+  if (!Number.isSafeInteger(from) || from <= 0) return;
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  const columns = Array.from(String(from), () => {
+    const column = document.createElement("span");
+    column.className = "sign-digit";
+    const strip = document.createElement("span");
+    strip.className = "sign-strip";
+    // 0-9 then 0 again, so 9 rolls straight on to 0.
+    for (const digit of "01234567890") {
+      const cell = document.createElement("span");
+      cell.textContent = digit;
+      strip.append(cell);
+    }
+    column.append(strip);
+    return { column, strip };
+  }).reverse(); // columns[0] is the ones digit
+  counter.replaceChildren(...[...columns].reverse().map(({ column }) => column));
+
+  const show = (value) => {
+    columns.forEach(({ column, strip }, place) => {
+      const unit = 10 ** place;
+      const rest = value % unit;
+      const carry = Math.max(rest - (unit - 1), 0);
+      const position = (Math.floor(value / unit) % 10) + carry;
+      strip.style.transform = `translateY(${-position}em)`;
+      // Leading digits drop away once they have rolled to 0.
+      column.classList.toggle("is-off", place > 0 && value < unit - 1);
+    });
+  };
+
+  const roll = (start, end, duration, ease, done) => {
+    const began = performance.now();
+    const step = (now) => {
+      const progress = Math.min((now - began) / duration, 1);
+      show(start + (end - start) * ease(progress));
+      if (progress < 1) requestAnimationFrame(step);
+      else done();
+    };
+    requestAnimationFrame(step);
+  };
+  const easeOut = (t) => 1 - (1 - t) ** 4;
+  const easeInOut = (t) => (t < 0.5 ? 2 * t * t : 1 - (-2 * t + 2) ** 2 / 2);
+
+  // Once at 0, a day passes every few seconds: the count goes up by one,
+  // unless (35% of the time) something breaks and it rolls back to 0.
+  const dayLength = 2400;
+  const resetChance = 0.35;
+  let days = 0;
+  const nextDay = () => {
+    const target = days > 0 && Math.random() < resetChance ? 0 : days + 1;
+    roll(days, target, target === 0 ? 700 : 500, easeInOut, () => {
+      days = target;
+      setTimeout(nextDay, dayLength);
+    });
+  };
+
+  show(from);
+  setTimeout(() => {
+    roll(from, 0, 2600, easeOut, () => setTimeout(nextDay, dayLength));
+  }, 500);
+}
+
+if (countdown) startCountdown(countdown);
+
 // Values follow the proposal's worked example. Every choice starts from the
 // same overload; choices are alternatives, not cumulative purchases.
 const scenarios = {
