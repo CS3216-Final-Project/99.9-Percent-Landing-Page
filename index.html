@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#231e44" />
-    <meta name="description" content="Break production without getting fired. A system-design tycoon where you deploy on Friday, watch your read replicas choke, and learn real-world distributed systems. Free in your browser." />
+    <meta name="description" content="Break production without getting fired. Push an update on a Friday, watch your app buckle under new users, and learn how real websites stay online. Free in your browser." />
     <meta property="og:title" content="99.99% — Break production without getting fired." />
     <meta property="og:description" content="Grow a startup. Keep it online. A system-design tycoon for NUS Computing students, free in your browser." />
     <meta property="og:type" content="website" />
@@ -40,24 +40,33 @@
         <section class="hero container" aria-labelledby="hero-title">
           <div class="hero-copy">
             <h1 id="hero-title">Break production<br /><span class="highlight">without getting fired.</span></h1>
-            <p class="hero-description">The only simulation game where you can deploy untested code on Friday, watch your read replicas choke, and learn real-world distributed systems without an angry VP of Engineering.</p>
-            <div class="incident-sign" role="img" aria-label="Sign: 0 days since last production failure">
-              <span class="sign-label">Days since last</span>
-              <span class="sign-count" aria-hidden="true">0</span>
-              <span class="sign-label">production failure</span>
-            </div>
+            <p class="hero-description">Push an update on a Friday, watch your app buckle as thousands of new users pour in, and learn how real websites stay online. No angry boss. No 3 a.m. phone calls.</p>
             <div class="hero-actions">
               <a class="button button-primary button-big" data-game-link href="https://99-99-percent-web.vercel.app/"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 11h-2V9h2zm0 4h-2v-2h2zm-2 2h-2v-2h2zm0-8h-2V7h2zm-2-2H9V5h2zM9 21H7V3h2zm6-8h2v-2h-2zm-6 4h2v2H9z"/></svg>Play free in your browser</a>
             </div>
             <p class="hero-note">No download · Play as a guest or sign in with Google</p>
           </div>
-          <figure class="game-preview">
-            <div class="preview-topbar"><span><span class="live-dot" aria-hidden="true"></span>Campaign · Chapter 1</span><span class="tag">In-game screenshot</span></div>
-            <img class="screenshot" src="./assets/gameplay-incident.webp" width="1600" height="1000" alt="99.99% during a Service slowdown incident: the database glows red in the 3D office while the incident panel shows 1,100 ms latency, a backlog of 600 and three responses to choose from." fetchpriority="high" />
-            <figcaption><span class="concept concept-critical" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24"><path d="M6 11h2v5H6zm2-2h2v2H8zm2-2h4v2h-4zm4 2h2v2h-2zm2 2h2v5h-2zM6 16h12v2H6zm-2 4h16v2H4zm0-2h2v2H4zm14 0h2v2h-2zm-7-6h2v4h-2zm9-1h3v2h-3zM1 11h3v2H1zm5-6h2v2H6zm10 0h2v2h-2zm2-2h2v2h-2zM4 3h2v2H4zm7-1h2v3h-2z"/></svg></span><span><strong>Service slowdown.</strong> Latency is at 1,100 ms and 600 requests are waiting.</span></figcaption>
-          </figure>
+          <div class="hero-sign">
+            <!-- script.js rolls the count down from data-countdown to 0 like an odometer. -->
+            <div class="incident-sign" role="img" aria-label="Sign: 0 days since last incident">
+              <div class="sign-board" aria-hidden="true">
+                <span class="sign-top"><span class="sign-count" data-countdown="365">0</span>Days</span>
+                <span>Since</span>
+                <span>Last</span>
+                <span>Incident</span>
+              </div>
+            </div>
+          </div>
         </section>
       </div>
+
+      <section class="section container showcase" aria-label="In-game screenshot">
+        <figure class="game-preview">
+          <div class="preview-topbar"><span><span class="live-dot" aria-hidden="true"></span>Campaign · Chapter 1</span><span class="tag">In-game screenshot</span></div>
+          <img class="screenshot" src="./assets/gameplay-incident.webp" width="1600" height="1000" alt="99.99% during a Service slowdown incident: the database glows red in the 3D office while the incident panel shows 1,100 ms latency, a backlog of 600 and three responses to choose from." />
+          <figcaption><span class="concept concept-critical" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24"><path d="M6 11h2v5H6zm2-2h2v2H8zm2-2h4v2h-4zm4 2h2v2h-2zm2 2h2v5h-2zM6 16h12v2H6zm-2 4h16v2H4zm0-2h2v2H4zm14 0h2v2h-2zm-7-6h2v4h-2zm9-1h3v2h-3zM1 11h3v2H1zm5-6h2v2H6zm10 0h2v2h-2zm2-2h2v2h-2zM4 3h2v2H4zm7-1h2v3h-2z"/></svg></span><span><strong>Service slowdown.</strong> Latency is at 1,100 ms and 600 requests are waiting.</span></figcaption>
+        </figure>
+      </section>
 
       <section id="numbers" class="section container numbers" aria-labelledby="numbers-title">
         <div class="section-intro">

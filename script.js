@@ -28,6 +28,61 @@ document.addEventListener("keydown", (event) => {
 });
 window.matchMedia("(max-width: 600px)").addEventListener("change", closeNavigation);
 
+// The incident sign winds down from data-countdown to 0 like an odometer: each
+// digit is a vertical strip, and a column only turns while the one to its
+// right rolls between 0 and 9. Without JS or with reduced motion it just reads 0.
+const countdown = document.querySelector("[data-countdown]");
+
+function startCountdown(counter) {
+  const from = Number(counter.dataset.countdown);
+  if (!Number.isSafeInteger(from) || from <= 0) return;
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  const columns = Array.from(String(from), () => {
+    const column = document.createElement("span");
+    column.className = "sign-digit";
+    const strip = document.createElement("span");
+    strip.className = "sign-strip";
+    // 0-9 then 0 again, so 9 rolls straight on to 0.
+    for (const digit of "01234567890") {
+      const cell = document.createElement("span");
+      cell.textContent = digit;
+      strip.append(cell);
+    }
+    column.append(strip);
+    return { column, strip };
+  }).reverse(); // columns[0] is the ones digit
+  counter.replaceChildren(...[...columns].reverse().map(({ column }) => column));
+
+  const show = (value) => {
+    columns.forEach(({ column, strip }, place) => {
+      const unit = 10 ** place;
+      const rest = value % unit;
+      const carry = Math.max(rest - (unit - 1), 0);
+      const position = (Math.floor(value / unit) % 10) + carry;
+      strip.style.transform = `translateY(${-position}em)`;
+      // Leading digits drop away once they have rolled to 0.
+      column.classList.toggle("is-off", place > 0 && value < unit - 1);
+    });
+  };
+
+  const duration = 2600;
+  show(from);
+  setTimeout(() => {
+    const start = performance.now();
+    const step = (now) => {
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = 1 - (1 - progress) ** 4;
+      show(from * (1 - eased));
+      if (progress < 1) requestAnimationFrame(step);
+      else show(0);
+    };
+    requestAnimationFrame(step);
+  }, 500);
+}
+
+if (countdown) startCountdown(countdown);
+
 // Values follow the proposal's worked example. Every choice starts from the
 // same overload; choices are alternatives, not cumulative purchases.
 const scenarios = {

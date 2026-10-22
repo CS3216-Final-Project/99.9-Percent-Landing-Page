@@ -116,17 +116,26 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 600; letter-spacing:
 .nav-cta { min-height: 48px; padding: 8px 16px; font-size: 18px; }
 .menu-toggle { display: none; }
 
-/* Hero: the pitch, the incident sign and the way in, beside a real screenshot */
+/* Hero: the pitch and the way in, beside the incident sign */
 .hero-band { background-image: linear-gradient(rgb(75 66 132 / .22) 2px, transparent 2px), linear-gradient(90deg, rgb(75 66 132 / .22) 2px, transparent 2px); background-size: 48px 48px; border-bottom: 3px solid var(--ink); }
 .hero { display: grid; grid-template-columns: 1fr 1.05fr; align-items: center; gap: 52px; padding-block: 88px; }
-/* This size keeps "Break production." on one line beside the screenshot. */
+/* This size keeps "Break production" on one line beside the sign. */
 h1 { font-size: clamp(40px, 3.6vw, 54px); line-height: 1.12; margin-bottom: 24px; text-shadow: 4px 4px 0 var(--ink); }
 .hero-description { font-size: 20px; color: var(--on-night-soft); max-width: 520px; line-height: 1.7; margin-bottom: 30px; }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 16px; }
-.incident-sign { display: inline-flex; align-items: center; gap: 14px; padding: 10px 18px; margin: 0 0 28px; background: var(--paper); color: var(--ink); border: 2px solid var(--ink); border-radius: 14px; box-shadow: 0 0 0 2px var(--night-line); transform: rotate(-1.5deg); }
-.sign-label { font-family: var(--font-display); font-size: 16px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; line-height: 1.15; max-width: 9ch; }
-.sign-count { display: grid; place-content: center; min-width: 56px; height: 64px; padding: 0 10px; background: var(--ink); color: var(--critical); border-radius: 8px; font-family: var(--font-num); font-variant-numeric: tabular-nums; font-size: 44px; font-weight: 700; line-height: 1; }
+/* The "0 days since last incident" sticker: white backing, thick black frame, a red marker number on a blank. */
+.hero-sign { display: grid; place-items: center; }
+.incident-sign { display: inline-block; padding: 12px; background: #fff; border-radius: 14px; box-shadow: 0 16px 36px rgb(8 6 22 / .55); transform: rotate(-3deg); }
+.sign-board { display: grid; justify-items: center; gap: 2px; padding: .4em .6em .5em; border: 12px solid #111; color: #111; font-family: var(--font-display); font-size: clamp(40px, 4.6vw, 66px); font-weight: 700; line-height: 1.05; letter-spacing: -.01em; text-transform: uppercase; }
+.sign-top { display: flex; align-items: flex-end; gap: .35em; }
+/* Sized for three digits so DAYS stays put while leading digits drop away. */
+.sign-count { display: inline-flex; justify-content: center; min-width: 2em; height: 1em; overflow: hidden; border-bottom: .07em solid #111; color: #e8401c; font-family: var(--font-num); font-size: 1.3em; font-variant-numeric: tabular-nums; line-height: 1; transform: skewX(-8deg); }
+.sign-digit { display: block; width: .62em; height: 1em; overflow: hidden; transition: width .3s, opacity .3s; }
+.sign-digit.is-off { width: 0; opacity: 0; }
+.sign-strip { display: flex; flex-direction: column; text-align: center; will-change: transform; }
 .hero-note { font-size: 16px; color: var(--on-night-soft); margin: 20px 0 0; }
+/* The in-game screenshot gets the full width of its own section below the hero. */
+.showcase { padding-bottom: 0; }
 .game-preview { margin: 0; overflow: hidden; background: var(--night-2); border: 3px solid var(--ink); border-radius: 6px; box-shadow: var(--night-panel); }
 .preview-topbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; padding: 14px 18px; border-bottom: 3px solid var(--ink); font-family: var(--font-display); font-size: 18px; }
 .preview-topbar > span:first-child { display: inline-flex; align-items: center; gap: 10px; }
@@ -256,7 +265,7 @@ details p { color: var(--on-night-soft); font-size: 18px; margin: 0 20px 24px 0;
   h1 { font-size: 50px; }
   .hero-description { margin-inline: auto; }
   .hero-actions { justify-content: center; }
-  .game-preview { max-width: 680px; width: 100%; margin-inline: auto; }
+  .sign-board { font-size: 48px; }
   .section { padding-block: 64px; }
   .section-intro { flex-direction: column; align-items: flex-start; gap: 20px; }
   .section-intro > p { max-width: 600px; }
@@ -278,6 +287,8 @@ details p { color: var(--on-night-soft); font-size: 18px; margin: 0 20px 24px 0;
   .js .site-nav { display: none; }
   .js .site-nav.is-open { display: flex; }
   .hero { padding-block: 40px 56px; gap: 40px; }
+  .incident-sign { padding: 9px; }
+  .sign-board { font-size: 34px; border-width: 9px; }
   h1 { font-size: clamp(40px, 11vw, 56px); text-shadow: 3px 3px 0 var(--ink); }
   .hero-actions .button { width: 100%; }
   .button-big { font-size: 20px; padding-inline: 18px; }
