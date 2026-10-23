@@ -51,7 +51,7 @@ The example starts at 900 requests/s, 1,000 requests/s of application capacity, 
 - `index.html`: positioning, FAQ, CTA destination, and page structure. Every link to the game uses `data-game-link` for easy discovery; the account links add `?signin=1`.
 - `styles.css`: the game's colour tokens and components, self-hosted fonts, responsive layout, and reduced-motion styles.
 - `script.js`: navigation, the illustrative scenario and the live numbers.
-- `assets/gameplay-*.webp`: production screenshots; `assets/social-preview.jpg`: 1200×630 link preview; `assets/favicon.svg`: the game's own favicon.
+- `assets/gameplay-*.webp`: production screenshots; `assets/social-preview.jpg`: 1280×720 link preview; `assets/favicon.svg`: the game's own favicon.
 - `assets/fonts/`: Pixelify Sans and Rubik from Fontsource, self-hosted because the Content Security Policy allows only same-origin fonts. Both are under the SIL Open Font License; see the licence files beside them.
 - Icons are inline SVG paths from [pixelarticons](https://github.com/halfmage/pixelarticons), the game's icon set (MIT; `assets/LICENSE-pixelarticons.txt`).
 
